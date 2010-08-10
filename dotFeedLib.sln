@@ -1,0 +1,18 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+# SharpDevelop 3.1.1.5327
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dotFeedLib", "dotFeedLib.csproj", "{4F27CBE9-2CC3-453D-9513-583A3560F58A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4F27CBE9-2CC3-453D-9513-583A3560F58A}.Debug|x86.Build.0 = Debug|x86
+		{4F27CBE9-2CC3-453D-9513-583A3560F58A}.Debug|x86.ActiveCfg = Debug|x86
+		{4F27CBE9-2CC3-453D-9513-583A3560F58A}.Release|x86.Build.0 = Release|x86
+		{4F27CBE9-2CC3-453D-9513-583A3560F58A}.Release|x86.ActiveCfg = Release|x86
+	EndGlobalSection
+EndGlobal
