@@ -407,8 +407,111 @@ namespace dotFeedLib
 				
 				return xml;
 			}
+		}
 			
+				
+		 /// <summary>
+		 /// Returns XML-Code for this feed
+		 /// </summary>
+		 /// <param name="type">desired type</param>
+		 /// <param name="additionalTags">string that contains all additional attributes that are used</param>
+		 /// <returns>XML-Code for this feed</returns>
+		public string getXML(feedTypes type,string additionalTags)
+		{
+			if(type == feedTypes.RSS)
+			{
+				string xml = String.Concat("\r\n<item>\r\n<title>",HttpUtility.HtmlEncode(title),"</title>\r\n<description><![CDATA[",description);
+			 	xml = String.Concat(xml,"]]></description>\r\n");
+			 	
+			 	if(link != "")
+			 	{
+			 		xml = String.Concat(xml,"<link>",HttpUtility.HtmlEncode(link),"</link>\r\n");
+			 	}
+			 	
+			 	if(author != "")
+			 	{
+			 		xml = String.Concat(xml,"<author>",HttpUtility.HtmlEncode(author),"</author>\r\n");
+			 	}
+			 	
+			    string comm = "";
+			 	if(comments != "" && comments != null)
+			 		{
+			 		comm = "<comments>";
+			 		comm = String.Concat(comm,HttpUtility.HtmlEncode(comments),"</comments>\r\n");
+			 		}
+	
+				string PubDate = "<pubDate>";
+				PubDate = String.Concat(PubDate,misc.DTtoRSS(pubDate),"</pubDate>\r\n");
+			 		
+				foreach(string cat_hand in category.get_categories())
+			 		{
+
+			 		xml = String.Concat(xml,"<category>",HttpUtility.HtmlEncode(cat_hand),"</category>\r\n");
+			 		}
+			 	
+			 	string enclosure = "";
+			 	
+			 	if(enclosure_url != "")
+			 		{
+			 		enclosure= String.Concat("<enclosure url=\"",HttpUtility.HtmlEncode(enclosure_url),"\" type=\"",enclosure_type,"\" length=\"",enclosure_length,"\" />\r\n");
+			 		}
+			 	
+			 	if(guid != "")
+			 		{
+			 		xml = String.Concat(xml,"<guid  isPermaLink=\"false\">",HttpUtility.HtmlEncode(guid),"</guid>\r\n");
+			 		}
+			 	
+			 	
+			 	
+			 	xml = String.Concat(xml,comm,PubDate,enclosure,additionalTags,"</item>\r\n");
+			 	
+			 	return xml;
+			}
 			
+			else			
+			{
+				string xml ="<entry>";
+		 	    
+		 		if(title != ""  && title != null)
+		 			{
+		 			xml = String.Concat(xml,"\r\n<title>",HttpUtility.HtmlEncode(title),"</title>");
+		 			}
+		 		
+		 		if(description != "" && description != null)
+		 	    	{
+		 	    	xml = String.Concat(xml,"\r\n<content type=\"html\"><![CDATA[",description);
+			 		xml = String.Concat(xml,"]]></content>\r\n<summary type=\"html\"><![CDATA[",description,"]]></summary>\r\n");
+		 	   		}
+			 	
+			 	if(link != "")
+			 		{
+			 		xml = String.Concat(xml,"<link rel=\"alternate\" type=\"text/html\" href=\"",HttpUtility.HtmlEncode(link),"\"/>\r\n");
+			 		}
+			 	
+			 	if(author != "")
+			 		{
+			 		xml = String.Concat(xml,"<author><name>",HttpUtility.HtmlEncode(author),"</name></author>\r\n");
+			 		}
+			 	
+			 	foreach (string cat_hand in category.get_categories())
+			 		{
+
+			 		xml = String.Concat(xml,"<category label=\"",HttpUtility.HtmlEncode(cat_hand),"\" term=\"",HttpUtility.HtmlEncode(cat_hand),"\"/>\r\n");
+			 		}
+			 	
+				string PubDate = "<updated>";
+				PubDate = String.Concat(PubDate,misc.DTtoAtom(pubDate),"</updated>\r\n");
+			 	
+			 	string enclosure = "";
+			 	if(enclosure_url != "")
+			 		{
+			 		enclosure= String.Concat("<link rel=\"enclosure\" href=\"",HttpUtility.HtmlEncode(enclosure_url),"\" type=\"",enclosure_type,"\" length=\"",enclosure_length,"\" title=\"Enclosure\" />\r\n");
+			 		}
+			 	
+			 	xml = String.Concat(xml,enclosure,PubDate,additionalTags,"</entry>\r\n");
+				
+				return xml;
+			}	
 			
 		}
 	

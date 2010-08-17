@@ -36,6 +36,14 @@ namespace dotFeedLib
 			return categories.ToArray();
 		}
 		
+		public int Length
+		{
+			get
+        	{
+           		 return categories.Count;
+        	}
+
+		}
 		
 		/// <summary>
 		/// Renames a category; Please be careful this only changes the name of the catgeory for this entry
@@ -66,10 +74,6 @@ namespace dotFeedLib
 			{
 				categories.RemoveAt(categories.IndexOf(name));
 			}
-			else
-			{
-				throw(new NoSuchCategoryException ());
-			}
 		}
 		
 		/// <summary>
@@ -91,6 +95,16 @@ namespace dotFeedLib
 			categories = new List<string>();
 		}
 		
-	
+		/// <summary>
+		/// Changes all categories at once
+		/// </summary>
+		public void changeAllCategories(string[] newCategories)
+		{
+			categories = new List<string>();
+			categories.AddRange(newCategories);
+			
+		}
+		
+		
 	}
 }

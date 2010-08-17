@@ -13,7 +13,19 @@ namespace dotFeedLib
 		XmlDocument doc = new XmlDocument();
 		
 		//Variables for content
-		string rss_version;
+		
+		/// <summary>
+		/// only assigend when an RSS-feed is opened, "" if ATOM-Feed
+		/// </summary>
+		string version;
+		
+		public string rssVersion
+		{
+			get
+			{
+				return version;
+			}
+		}
 		
 		
 		public DateTime pubDate = DateTime.Now;		
@@ -189,6 +201,13 @@ namespace dotFeedLib
 		
 	
 		
+	
+		
+		/// <summary>
+		/// Returns the feeds XML
+		/// </summary>
+		/// <param name="type">feedType you would like to use</param>
+		/// <returns>XML-Code</returns>
 		public string getXML(feedTypes type)
 		{			
 			if(type == feedTypes.RSS)
@@ -265,7 +284,6 @@ namespace dotFeedLib
 				}
 			
 		}
-			
 		/// <summary>
 		/// Deletes an entry
 		/// </summary>
@@ -327,7 +345,7 @@ namespace dotFeedLib
 			
 		}
 		
-		public int getPosizionOfEntryWithCeratainGUID(string guid)
+		public int getPositionOfEntryWithCertainGUID(string guid)
 		{
 			if(guid == "")
 			{
@@ -363,7 +381,7 @@ namespace dotFeedLib
 
 			
 			// Creates new,empty feed
-			rss_version = "";
+			version = "";
 			title = "";
 			link = "";
 			description = "";
@@ -381,16 +399,16 @@ namespace dotFeedLib
 		
 
 
-		private void readRestRSS(XmlDocument doc)
+		protected void readRestRSS(XmlDocument doc)
 			{
 				try
 				{
-					rss_version = doc.SelectSingleNode("rss").Attributes["version"].InnerText;
+					version = doc.SelectSingleNode("rss").Attributes["version"].InnerText;
 				}
 		
 				catch(Exception)
 				{
-					rss_version = "";
+					version = "";
 				}
 			
 			
