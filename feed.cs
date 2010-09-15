@@ -11,8 +11,13 @@ namespace dotFeedLib
 	public class feed
 	{		
 		XmlDocument doc = new XmlDocument();
+
+		/// <summary>
+		/// Is used to save configuration
+		/// </summary>
+		public config cfg = new config();
 		
-		//Variables for content
+		//Variables for content		
 		
 		/// <summary>
 		/// only assigend when an RSS-feed is opened, "" if ATOM-Feed
@@ -35,7 +40,25 @@ namespace dotFeedLib
 		public string language;
 		public string copyright;
 		public string generator;
-
+		
+		/// <summary>
+		/// Contains a link to the image
+		/// This is (by default) used as feed/logo when saving ATOM-Feeds
+		/// If you would prefer it to be used as feed/icon you have to set a specfifc config value in config.cs when compiling
+		/// Therefore, you should use an image with the ratio of 2:1
+		/// </summary>
+		public string imageUrl;
+		
+		/// <summary>
+		/// Not part of ATOM-specification. Please set this to the same value as feed.title
+		/// </summary>
+		public string imageTitle;
+		
+		/// <summary>
+		/// Not part of ATOM-specification. Please set this to the same value as feed.link
+		/// </summary>
+		public string imageLink;
+		
 		public feedTypes feedType = feedTypes.RSS;
 		public entry[] entries;
 		
@@ -233,6 +256,29 @@ namespace dotFeedLib
 					 	xml = String.Concat(xml,"<copyright>",HttpUtility.HtmlEncode(this.copyright),"</copyright>\r\n");
 					 }
 					 
+					 if(this.imageUrl != "")
+					 {
+					 	xml = String.Concat(xml,"<image><url>",this.imageUrl,"</url>");
+					 	
+					 	if(this.imageTitle != "")
+					 	{
+					 		xml = String.Concat(xml,"<title>",this.imageTitle,"</title>");
+					 	}
+					 	else
+					 	{
+					 		xml = String.Concat(xml,"<title></title");
+					 	}
+					 	
+					 	if(this.imageLink != "")
+					 	{
+					 		xml = String.Concat(xml,"<link>",this.imageLink,"</link>");
+					 	}
+					 	else
+					 	{
+					 		xml = String.Concat(xml,"<link></link></image>");
+					 	}
+					 }
+					 
 					 xml = String.Concat(xml,"<language>",this.language,"</language>\r\n<pubDate>");
 					 
 								 
@@ -272,6 +318,21 @@ namespace dotFeedLib
 					
 					 
 					 xml = String.Concat(xml,"<generator uri=\"http://easy-feed-editor.tk\" version=\"1.0\">dotFeedLib</generator>\r\n");
+					 
+					 if(this.imageUrl != "")
+					 {
+
+						
+						if(cfg.getValue("use_image_icon") != "true")
+							{
+								xml = String.Concat(xml,"<logo>",this.imageUrl,"</logo>");
+							}
+						else
+							{
+								xml = String.Concat(xml,"<icon>",this.imageUrl,"</icon>");
+							}
+					 }
+					 
 					 
 					 foreach(entry element in entries)
 					 	{						 	
@@ -470,6 +531,35 @@ namespace dotFeedLib
 				catch(Exception)
 				{
 					generator = "";
+				}
+				
+				try
+				{
+					imageUrl = doc.SelectSingleNode("rss/channel/image/url").InnerText;
+					
+					try
+					{
+						imageLink = doc.SelectSingleNode("rss/channel/image/link").InnerText;
+					}
+					catch(Exception)
+					{
+						imageLink = "";
+					}
+					
+					try
+					{
+						imageTitle = doc.SelectSingleNode("rss/channel/image/title").InnerText;
+					}
+					catch(Exception)
+					{
+						imageTitle = "";
+					}
+				}
+				catch(Exception)
+				{
+					imageUrl = "";
+					imageLink = "";
+					imageTitle = "";
 				}
 				
 				int anzahl=0;
@@ -723,8 +813,35 @@ namespace dotFeedLib
 			
 
 
+			
+			
 			entries= new entry[doc.SelectSingleNode("atom:feed", nsmgr).SelectNodes("atom:entry", nsmgr).Count];
-							
+			
+			try
+			{
+
+				
+				if(cfg.getValue("use_image_icon") != "true")
+					{
+						imageUrl = doc.SelectSingleNode("atom:feed", nsmgr).SelectSingleNode("atom:logo", nsmgr).InnerText;
+					}
+				else
+					{
+						imageUrl = doc.SelectSingleNode("atom:feed", nsmgr).SelectSingleNode("atom:icon", nsmgr).InnerText;
+					}
+				
+				imageLink = "";
+				imageTitle = "";
+
+				}
+				catch(Exception)
+				{
+					imageUrl = "";
+					imageLink = "";
+					imageTitle = "";
+				}
+				
+			
 		}
 		
 		/// <summary>

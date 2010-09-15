@@ -6,10 +6,12 @@ namespace dotFeedLib
 	public class config
 	{		
 		List<configValue> configInformation = new List<configValue>();
+		
 		public config()
 		{
 			configInformation.Add(new configValue("automatic_guid","true"));
 			configInformation.Add(new configValue("new_entry_name","New entry"));
+			configInformation.Add(new configValue("use_image_icon","false"));
 		}
 		
 		public string getValue(string name)
@@ -24,6 +26,29 @@ namespace dotFeedLib
 			
 			throw new ConfigInformationIncorrectException();
 		}
+		
+		public void changeValue(string name,string newValue)
+		{
+			int id = -1;
+			foreach(configValue c in configInformation)
+			{
+				if(c.name == name)
+				{
+					id = configInformation.IndexOf(c);
+				}
+			}
+			
+			if(id != -1)
+			{
+				configInformation[id] = new configValue(name,newValue);
+			}
+			else
+			{
+				throw new ArgumentException("There is no property with this name");
+			}
+		}
+
+
 	}
 	
 	public struct configValue
