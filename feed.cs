@@ -562,27 +562,18 @@ namespace dotFeedLib
 					imageTitle = "";
 				}
 				
-				int anzahl=0;
-				XmlNode root = doc.SelectSingleNode("rss/channel");
-					foreach (XmlNode @item in root.ChildNodes)
-					{
-					if(item.Name == "item")
-					{
-						anzahl++;
-					}
-					} 
-
-				entries= new entry[anzahl];
-					
-				anzahl = 0;
-	
 				
-				foreach (XmlNode @item in root.ChildNodes)
+				
+				XmlNodeList list = doc.SelectNodes("rss/channel/item");	
+				entries = new entry[list.Count];
+				
+				int count=0;
+				foreach (XmlNode @item in list)
 				{
 					if(item.Name == "item")
 					{
-					entries[anzahl] = new entry(@item,doc,feedTypes.RSS);
-					anzahl++;
+					entries[count] = new entry(@item,doc,feedTypes.RSS);
+					count++;
 					}
 				}
 			}
@@ -810,12 +801,19 @@ namespace dotFeedLib
 			{
 				generator = "";
 			}
-			
 
-
-			
 			
 			entries= new entry[doc.SelectSingleNode("atom:feed", nsmgr).SelectNodes("atom:entry", nsmgr).Count];
+			
+			
+			int count = 0;
+		
+			foreach (XmlNode @item in doc.SelectSingleNode("atom:feed", nsmgr).SelectNodes("atom:entry", nsmgr))
+				{
+					entries[count] = new entry(@item,doc,feedTypes.ATOM);
+					count++;
+				}
+			
 			
 			try
 			{
@@ -833,13 +831,13 @@ namespace dotFeedLib
 				imageLink = "";
 				imageTitle = "";
 
-				}
-				catch(Exception)
-				{
-					imageUrl = "";
-					imageLink = "";
-					imageTitle = "";
-				}
+			}
+			catch(Exception)
+			{
+				imageUrl = "";
+				imageLink = "";
+				imageTitle = "";
+			}
 				
 			
 		}
