@@ -1,0 +1,553 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>dotFeedLib</name>
+    </assembly>
+    <members>
+        <member name="T:dotFeedLib.authorList">
+            <summary>
+            Contains a list of authors
+            </summary>
+        </member>
+        <member name="F:dotFeedLib.authorList.authors">
+            <summary>
+            Contains a list of authors
+            </summary>
+        </member>
+        <member name="M:dotFeedLib.authorList.#ctor">
+            <summary>
+            Creates a new, empty authorList
+            </summary>
+        </member>
+        <member name="M:dotFeedLib.authorList.author_add(System.String)">
+            <summary>
+            Adds an author (if not already added) to this list
+            </summary>
+            <param name="author">author that is to be added</param>
+        </member>
+        <member name="M:dotFeedLib.authorList.get_authors">
+            <summary>
+            gets a list that coantains all authores in this list
+            </summary>
+            <returns>string[] that conatins alla uthors</returns>
+        </member>
+        <member name="T:dotFeedLib.categoryList">
+            <summary>
+            Contains a list of categories
+            </summary>
+        </member>
+        <member name="M:dotFeedLib.categoryList.#ctor">
+            <summary>
+            Creates a new,empty categoryList
+            </summary>
+        </member>
+        <member name="M:dotFeedLib.categoryList.addCategory(System.String)">
+            <summary>
+            Adds a new category (if not already existing)
+            </summary>
+            <param name="category">name of the category</param>
+        </member>
+        <member name="M:dotFeedLib.categoryList.addCategory(dotFeedLib.categoryList)">
+            <summary>
+            Adds all categories that are part of another categoryList
+            (if not already existing)
+            </summary>
+            <param name="list">categoryList that should be added</param>
+        </member>
+        <member name="M:dotFeedLib.categoryList.get_categories">
+            <summary>
+            Gets all catgories that are parts of this categoryLsit
+            </summary>
+            <returns>String-Array</returns>
+        </member>
+        <member name="M:dotFeedLib.categoryList.rename_category(System.String,System.String)">
+            <summary>
+            Renames a category; Please be careful this only changes the name of the category for the entry this list belongs to
+            After doing this, feeds that belonged to the same category will be in an new one with the old name
+            If this is not what you would like to happen call dotFeedLib.feed.rename_category(string old,string new_name) instead
+            </summary>
+            <param name="old">Current name of the category</param>
+            <param name="newName">New name of the category</param>		
+        </member>
+        <member name="M:dotFeedLib.categoryList.removeCategory(System.String)">
+            <summary>
+            Remove this entry from a category
+            </summary>
+            <param name="name">Name of the category that this feed should be removed from</param>
+        </member>
+        <member name="M:dotFeedLib.categoryList.contains(System.String)">
+            <summary>
+            Checks wheter this category is part of this categoryList
+            </summary>
+            <param name="category">category you would like to look for</param>
+            <returns>Is category part of this list ?</returns>
+        </member>
+        <member name="M:dotFeedLib.categoryList.removeAllCategories">
+            <summary>
+            Removes all categories at once
+            </summary>
+        </member>
+        <member name="M:dotFeedLib.categoryList.changeAllCategories(System.String[])">
+            <summary>
+            Changes all categories at once
+            </summary>
+        </member>
+        <member name="P:dotFeedLib.categoryList.Length">
+            <summary>
+            The Length of this category list
+            </summary>
+        </member>
+        <member name="T:dotFeedLib.config">
+            <summary>
+            Class that provides configuration information
+            </summary>
+        </member>
+        <member name="M:dotFeedLib.config.#ctor">
+            <summary>
+            Creates a new config with default values
+            </summary>
+        </member>
+        <member name="M:dotFeedLib.config.getValue(System.String)">
+            <summary>
+            Returns a config value
+            </summary>
+            <param name="name">Name of the setting</param>
+            <returns>Value of the setting</returns>
+        </member>
+        <member name="M:dotFeedLib.config.changeValue(System.String,System.String)">
+            <summary>
+            Changes the value of a config setting
+            </summary>
+            <param name="name">name of the config setting</param>
+            <param name="newValue">new value for this setting</param>
+        </member>
+        <member name="T:dotFeedLib.configValue">
+            <summary>
+            Class that stores a single configuration value
+            </summary>
+        </member>
+        <member name="F:dotFeedLib.configValue.name">
+            <summary>
+            name of the configValue
+            </summary>
+        </member>
+        <member name="F:dotFeedLib.configValue.value">
+            <summary>
+            value of the configValue
+            </summary>
+        </member>
+        <member name="M:dotFeedLib.configValue.#ctor(System.String,System.String)">
+            <summary>
+            Creates new configValue
+            </summary>
+            <param name="propertyName">name of the configValue</param>
+            <param name="propertyValue">value of the configValue</param>
+        </member>
+        <member name="T:dotFeedLib.entry">
+            <summary>
+            Description of entry.
+            </summary>
+        </member>
+        <member name="F:dotFeedLib.entry.title">
+            <summary>
+            Title of the entry
+            </summary>
+        </member>
+        <member name="F:dotFeedLib.entry.description">
+            <summary>
+            Description of the entry
+            </summary>
+        </member>
+        <member name="F:dotFeedLib.entry.link">
+            <summary>
+            Link to this entry on the website
+            </summary>
+        </member>
+        <member name="F:dotFeedLib.entry.author">
+            <summary>
+            Author of this entry
+            </summary>
+        </member>
+        <member name="F:dotFeedLib.entry.guid">
+            <summary>
+            GUID of th entry
+            </summary>
+        </member>
+        <member name="F:dotFeedLib.entry.enclosure_url">
+            <summary>
+            URL of enclosure
+            </summary>
+        </member>
+        <member name="F:dotFeedLib.entry.enclosure_length">
+            <summary>
+            Filesize (in bytes) of enclosure
+            </summary>
+        </member>
+        <member name="F:dotFeedLib.entry.enclosure_type">
+            <summary>
+            MIME-Type of enclosure
+            </summary>
+        </member>
+        <member name="F:dotFeedLib.entry.pubDate">
+            <summary>
+            Publishment of this entry
+            </summary>
+        </member>
+        <member name="F:dotFeedLib.entry.comments">
+            <summary>
+            Link to the comments for this entry
+            </summary>
+        </member>
+        <member name="F:dotFeedLib.entry.category">
+            <summary>
+            categoryList that conatins all categories this entry belongs to
+            </summary>
+        </member>
+        <member name="F:dotFeedLib.entry.doc">
+            <summary>
+            Be careful: Is not updated when this entry is changed
+            </summary>
+        </member>
+        <member name="F:dotFeedLib.entry.node">
+            <summary>
+            Be careful: Is not updated when this entry is changed
+            </summary>
+        </member>
+        <member name="M:dotFeedLib.entry.#ctor(System.Xml.XmlNode,System.Xml.XmlDocument,dotFeedLib.feedTypes)">
+            <summary>
+            Creates a new entry out of an XML-Document
+            </summary>
+            <param name="item">Node that contains this entry</param>
+            <param name="document">Document this entry belongs to</param>
+            <param name="inputType">Indicates whether this is ATOM or RSS</param>
+        </member>
+        <member name="M:dotFeedLib.entry.#ctor">
+            <summary>
+            Creates a new, empty entry
+            </summary>
+        </member>
+        <member name="M:dotFeedLib.entry.add_new_guid">
+            <summary>
+            Creates a new GUID and sets it as the current GUiD
+            </summary>
+        </member>
+        <member name="M:dotFeedLib.entry.getXML(dotFeedLib.feedTypes)">
+            <summary>
+            Returns XML-Code for this feed
+            </summary>
+            <param name="type">desired type</param>
+            <returns>XML-Code for this feed</returns>
+        </member>
+        <member name="M:dotFeedLib.entry.getXML(dotFeedLib.feedTypes,System.String)">
+            <summary>
+            Returns XML-Code for this feed
+            </summary>
+            <param name="type">desired type</param>
+            <param name="additionalTags">string that contains all additional attributes that are used</param>
+            <returns>XML-Code for this feed</returns>
+        </member>
+        <member name="T:dotFeedLib.feed">
+            <summary>
+            Class that contains all information on a feed
+            </summary>
+        </member>
+        <member name="F:dotFeedLib.feed.cfg">
+            <summary>
+            Is used to save configuration
+            </summary>
+        </member>
+        <member name="F:dotFeedLib.feed.version">
+            <summary>
+            only assigend when an RSS-feed is opened, "" if ATOM-Feed
+            </summary>
+        </member>
+        <member name="F:dotFeedLib.feed.pubDate">
+            <summary>
+            Time when this feed was last changed
+            </summary>
+        </member>
+        <member name="F:dotFeedLib.feed.title">
+            <summary>
+            Title of the feed
+            </summary>
+        </member>
+        <member name="F:dotFeedLib.feed.link">
+            <summary>
+            Link to the website of this feed
+            </summary>
+        </member>
+        <member name="F:dotFeedLib.feed.description">
+            <summary>
+            Description of this feed
+            </summary>
+        </member>
+        <member name="F:dotFeedLib.feed.language">
+            <summary>
+            Language of this Feed
+            e.g:
+            de-de : German (Germany)
+            en-us : American English
+            en-en : British English
+            </summary>
+        </member>
+        <member name="F:dotFeedLib.feed.copyright">
+            <summary>
+            The feeds copyright
+            e. G:
+            (c) 2008-2010 Michael Schwarz
+            </summary>
+        </member>
+        <member name="F:dotFeedLib.feed.generator">
+            <summary>
+            Name of the tool that was used to create this feed
+            </summary>
+        </member>
+        <member name="F:dotFeedLib.feed.imageUrl">
+            <summary>
+            Contains a link to the image
+            This is (by default) used as feed/logo when saving ATOM-Feeds
+            If you would prefer it to be used as feed/icon you have to set a specfifc config value in config.cs when compiling
+            Therefore, you should use an image with the ratio of 2:1
+            </summary>
+        </member>
+        <member name="F:dotFeedLib.feed.imageTitle">
+            <summary>
+            Not part of ATOM-specification. Please set this to the same value as feed.title
+            </summary>
+        </member>
+        <member name="F:dotFeedLib.feed.imageLink">
+            <summary>
+            Not part of ATOM-specification. Please set this to the same value as feed.link
+            </summary>
+        </member>
+        <member name="F:dotFeedLib.feed.feedType">
+            <summary>
+            the type of the feed (RSS or ATOM)
+            </summary>
+        </member>
+        <member name="F:dotFeedLib.feed.entries">
+            <summary>
+            Array that contains all entries of this feed
+            </summary>
+        </member>
+        <member name="M:dotFeedLib.feed.changeFormat(dotFeedLib.feedTypes)">
+            <summary>
+            If file has been saved as ATOM-Feed / RSS-Feed execute this
+            </summary>
+            <param name="f">new feedType</param>
+        </member>
+        <member name="M:dotFeedLib.feed.search_replace_author(System.String,System.String)">
+            <summary>
+            Search and replace in authors
+            </summary>
+            <param name="old">search for</param>
+            <param name="new_text">replace with</param>
+        </member>
+        <member name="M:dotFeedLib.feed.search_replace_title(System.String,System.String)">
+            <summary>
+            Search and replace in titles
+            </summary>
+            <param name="old">search for</param>
+            <param name="new_text">replace with</param>
+        </member>
+        <member name="M:dotFeedLib.feed.rename_category(System.String,System.String)">
+            <summary>
+            Rename a category
+            </summary>
+            <param name="old">old name</param>
+            <param name="new_name">new name</param>
+        </member>
+        <member name="M:dotFeedLib.feed.remove_category(System.String)">
+            <summary>
+            Remove a category
+            </summary>
+            <param name="name">Name of the category</param>
+        </member>
+        <member name="M:dotFeedLib.feed.get_authors">
+            <summary>
+            Get an array that contains all authors that are used in this feed
+            </summary>
+            <returns>authorList that conatains all authors</returns>
+        </member>
+        <member name="M:dotFeedLib.feed.get_categories">
+            <summary>
+            Get an array that contains all categories that are udes in this feed
+            </summary>
+            <returns>categoryList that conatains all categories</returns>
+        </member>
+        <member name="M:dotFeedLib.feed.new_entry">
+            <summary>
+            Add a new entry
+            </summary>
+            <returns>id of the new entry</returns>
+        </member>
+        <member name="M:dotFeedLib.feed.entry_add(System.Xml.XmlNode,System.Xml.XmlDocument,dotFeedLib.feedTypes)">
+            <summary>
+            Adds a new entry (part of the merge feeds functiionality / the open functionality)
+            </summary>
+            <param name="entry_item">XML-Node of the current-Item</param>
+            <param name="entry_doc">XML-Document that contains current-Item</param>
+            <param name="inputFormat">the input format</param>
+        </member>
+        <member name="M:dotFeedLib.feed.getXML(dotFeedLib.feedTypes)">
+            <summary>
+            Returns the feeds XML
+            </summary>
+            <param name="type">feedType you would like to use</param>
+            <returns>XML-Code</returns>
+        </member>
+        <member name="M:dotFeedLib.feed.deleteEntry(System.Int32)">
+            <summary>
+            Deletes an entry
+            </summary>
+            <param name="number">the position of the entry that is to be deleted</param>
+        </member>
+        <member name="M:dotFeedLib.feed.getEntriesInCategory(System.String)">
+            <summary>
+            Gets all entries that belong to a certain category
+            </summary>
+            <param name="category">category that items should belong to</param>
+            <returns>all entries that are part of this category</returns>
+        </member>
+        <member name="M:dotFeedLib.feed.add_guids">
+            <summary>
+            Adds GUIDS to all elements that don't have any at the moment
+            </summary>
+        </member>
+        <member name="M:dotFeedLib.feed.getPositionOfEntryWithCertainGUID(System.String)">
+            <summary>
+            If you have a GUID and want to get its position in entries[]
+            </summary>
+            <param name="guid">The GUID you're looking for</param>
+            <returns>position in entries[] or -1 if there's no entry with this GUID</returns>
+        </member>
+        <member name="M:dotFeedLib.feed.#ctor(System.Boolean,System.String)">
+            <summary>
+            Creates a new, empty feed 
+            </summary>
+            <param name="newFeed">ignored</param>
+            <param name="languageCode">languageCode for the new feed e.g. en-us or de-de</param>
+        </member>
+        <member name="M:dotFeedLib.feed.readRestRSS(System.Xml.XmlDocument)">
+            <summary>
+            Please do not use. Only for internal use
+            </summary>
+            <param name="doc">XMlDocument</param>
+        </member>
+        <member name="M:dotFeedLib.feed.#ctor(System.String)">
+            <summary>
+            Opens an excisting feed either via the Web or from an excisitng file
+            </summary>
+            <param name="path">absolute path or valid URI</param>
+        </member>
+        <member name="M:dotFeedLib.feed.feedReadAtom(System.String)">
+            <summary>
+             Open ATOM file
+            </summary>
+            <param name="atom_path">path of the atom file</param>
+        </member>
+        <member name="M:dotFeedLib.feed.save(System.String,dotFeedLib.feedTypes)">
+            <summary>
+            Saves the feed
+            </summary>
+            <param name="path">Full path of File</param>
+            <param name="saveFormat">Fomrat in which Feed should be saved</param>
+        </member>
+        <member name="P:dotFeedLib.feed.rssVersion">
+            <summary>
+            RSS-Version
+            This is only set if the feed is a RSS-Feed
+            </summary>
+        </member>
+        <member name="T:dotFeedLib.FileTypeNotSupportedException">
+            <summary>
+            Is thrown whenever the opened file is a valid XML-File but no ATOM or RSS feed 
+            </summary>
+        </member>
+        <member name="T:dotFeedLib.NotValidXmlFileException">
+            <summary>
+            Is thrown whenever doc.Load() fails and this isn't caused by  a web error
+            </summary>
+        </member>
+        <member name="T:dotFeedLib.NotFileNeitherUrlExcepetion">
+            <summary>
+            Is thrown when file isn't a valid url or a valid filename
+            </summary>
+        </member>
+        <member name="T:dotFeedLib.UnableToReachUrlExcepetion">
+            <summary>
+            Is thrown whenever an URL is valid but could not be reached
+            </summary>
+        </member>
+        <member name="T:dotFeedLib.AdditionalTagsDeclarationDamagedException">
+            <summary>
+            Is thrown whenever file that declares additional tags is damaged
+            </summary>
+        </member>
+        <member name="T:dotFeedLib.ConfigInformationIncorrectException">
+            <summary>
+            Is thrown whenever the config information isn't valid
+            </summary>
+        </member>
+        <member name="T:dotFeedLib.NoSuchCategoryException">
+            <summary>
+            Is thrown when you try to rename or delete a non-excisiting category
+            </summary>
+        </member>
+        <member name="T:dotFeedLib.misc">
+            <summary>
+            Provides some functions that do not belong anywhere
+            </summary>
+        </member>
+        <member name="M:dotFeedLib.misc.IsUrl(System.String)">
+            <summary>
+            Checks whether given string is valid URL
+            </summary>
+            <param name="url">string to check</param>
+            <returns>given string is URL</returns>
+        </member>
+        <member name="M:dotFeedLib.misc.DTfromAtom(System.String)">
+            <summary>
+            DateTime out of AtomDateConstruct
+            </summary>
+            <param name="date">AtomDateConstruct</param>
+            <returns>DateTime</returns>
+        </member>
+        <member name="M:dotFeedLib.misc.DTfromRSS(System.String)">
+            <summary>
+            DateTime out of RSSDateConstruct
+            </summary>
+            <param name="date">RssDateConstruct</param>
+            <returns>DateTime</returns>
+        </member>
+        <member name="M:dotFeedLib.misc.DTtoAtom(System.DateTime)">
+            <summary>
+            AtomDateConstruct out of DateTime
+            </summary>
+            <param name="dt">DateTime</param>
+            <returns>AtomDateConstruct</returns>
+        </member>
+        <member name="M:dotFeedLib.misc.DTtoRSS(System.DateTime)">
+            <summary>
+            RSSDateConstruct out of DateTime
+            </summary>
+            <param name="dt">DateTime</param>
+            <returns>RSSDateConstruct</returns>
+        </member>
+        <member name="T:dotFeedLib.feedTypes">
+            <summary>
+            Used to store whether feed is RSS-Feed or ATOM-Feed
+            </summary>
+        </member>
+        <member name="F:dotFeedLib.feedTypes.RSS">
+            <summary>
+            Used when feed is a RSS-Feed
+            </summary>
+        </member>
+        <member name="F:dotFeedLib.feedTypes.ATOM">
+            <summary>
+            Used when feed is a ATOM-Feed
+            </summary>
+        </member>
+    </members>
+</doc>

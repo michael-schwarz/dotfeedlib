@@ -3,18 +3,27 @@ using System.Collections.Generic;
 
 namespace dotFeedLib
 {
-
+	/// <summary>
+	/// Contains a list of categories
+	/// </summary>
 	public class categoryList
 	{
 	
 		// Autorenarray
 		List<String> categories;
 		
+		/// <summary>
+		/// Creates a new,empty categoryList
+		/// </summary>
 		public categoryList()
 		{
 			 categories = new List<string>();
 		}
 		
+		/// <summary>
+		/// Adds a new category (if not already existing)
+		/// </summary>
+		/// <param name="category">name of the category</param>
 		public void addCategory(string category)
 		{
 			if(categories.IndexOf(category) == -1 && category != "")
@@ -22,6 +31,12 @@ namespace dotFeedLib
 				categories.Add(category);
 			}
 		}
+		
+		/// <summary>
+		/// Adds all categories that are part of another categoryList
+		/// (if not already existing)
+		/// </summary>
+		/// <param name="list">categoryList that should be added</param>
 		public void addCategory(categoryList list)
 		{
 			foreach(string str in list.categories)
@@ -31,11 +46,18 @@ namespace dotFeedLib
 			
 		}
 		
+		/// <summary>
+		/// Gets all catgories that are parts of this categoryLsit
+		/// </summary>
+		/// <returns>String-Array</returns>
 		public string[] get_categories()
 		{
 			return categories.ToArray();
 		}
 		
+		/// <summary>
+		/// The Length of this category list
+		/// </summary>
 		public int Length
 		{
 			get
@@ -46,12 +68,12 @@ namespace dotFeedLib
 		}
 		
 		/// <summary>
-		/// Renames a category; Please be careful this only changes the name of the catgeory for this entry
+		/// Renames a category; Please be careful this only changes the name of the category for the entry this list belongs to
 		/// After doing this, feeds that belonged to the same category will be in an new one with the old name
 		/// If this is not what you would like to happen call dotFeedLib.feed.rename_category(string old,string new_name) instead
 		/// </summary>
 		/// <param name="old">Current name of the category</param>
-		/// <param name="new_text">New name of the category</param>		
+		/// <param name="newName">New name of the category</param>		
 		public void rename_category(string old,string newName)
 		{
 			if(categories.IndexOf(old) != -1)

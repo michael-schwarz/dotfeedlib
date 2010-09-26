@@ -9,16 +9,49 @@ namespace dotFeedLib
 	/// </summary>
 	public class entry
 	{
+		/// <summary>
+		/// Title of the entry
+		/// </summary>
 		public string title;
+		/// <summary>
+		/// Description of the entry
+		/// </summary>
 		public string description;
+		/// <summary>
+		/// Link to this entry on the website
+		/// </summary>
 		public string link;
+		/// <summary>
+		/// Author of this entry
+		/// </summary>
 		public string author;
+		/// <summary>
+		/// GUID of th entry
+		/// </summary>
 		public string guid;
+		/// <summary>
+		/// URL of enclosure
+		/// </summary>
 		public string enclosure_url;
+		/// <summary>
+		/// Filesize (in bytes) of enclosure
+		/// </summary>
 		public string enclosure_length;
+		/// <summary>
+		/// MIME-Type of enclosure
+		/// </summary>
 		public string enclosure_type;
+		/// <summary>
+		/// Publishment of this entry
+		/// </summary>
 		public DateTime pubDate;
+		/// <summary>
+		/// Link to the comments for this entry
+		/// </summary>
 		public string comments;
+		/// <summary>
+		/// categoryList that conatins all categories this entry belongs to
+		/// </summary>
 		public categoryList category = new categoryList();
 		
 
@@ -33,6 +66,12 @@ namespace dotFeedLib
 		/// </summary>
 		public XmlNode node;
 		
+		/// <summary>
+		/// Creates a new entry out of an XML-Document
+		/// </summary>
+		/// <param name="item">Node that contains this entry</param>
+		/// <param name="document">Document this entry belongs to</param>
+		/// <param name="inputType">Indicates whether this is ATOM or RSS</param>
 		public entry(XmlNode item,XmlDocument document,feedTypes inputType)
 			{
 				if(inputType == feedTypes.RSS)

@@ -3,14 +3,19 @@ using System.Collections.Generic;
 
 namespace dotFeedLib
 {
-	
+	/// <summary>
+	/// Contains a list of authors
+	/// </summary>
 	public class authorList
 	{
 		/// <summary>
-		/// Coantains alist of authors
+		/// Contains a list of authors
 		/// </summary>
 		List<String> authors;
 		
+		/// <summary>
+		/// Creates a new, empty authorList
+		/// </summary>
 		public authorList()
 		{
 			authors = new List<String>();

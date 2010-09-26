@@ -75,6 +75,18 @@ namespace dotFeedLib
 			return  dt.ToString("R");	
 		}
 	}
-	
-	public enum feedTypes {RSS,ATOM};
+	/// <summary>
+	/// Used to store whether feed is RSS-Feed or ATOM-Feed
+	/// </summary>
+	public enum feedTypes 
+	{		
+		/// <summary>
+        /// Used when feed is a RSS-Feed
+        /// </summary>
+		RSS,
+		/// <summary>
+        /// Used when feed is a ATOM-Feed
+        /// </summary>
+		ATOM
+	};
 }

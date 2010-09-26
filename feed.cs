@@ -7,7 +7,9 @@ using System.Web;
 
 namespace dotFeedLib
 {
-
+	/// <summary>
+	/// Class that contains all information on a feed
+	/// </summary>
 	public class feed
 	{		
 		XmlDocument doc = new XmlDocument();
@@ -24,6 +26,10 @@ namespace dotFeedLib
 		/// </summary>
 		string version;
 		
+		/// <summary>
+		/// RSS-Version
+		/// This is only set if the feed is a RSS-Feed
+		/// </summary>
 		public string rssVersion
 		{
 			get
@@ -32,19 +38,45 @@ namespace dotFeedLib
 			}
 		}
 		
-		
-		public DateTime pubDate = DateTime.Now;		
+		/// <summary>
+		/// Time when this feed was last changed
+		/// </summary>
+		public DateTime pubDate = DateTime.Now;
+		/// <summary>
+		/// Title of the feed
+		/// </summary>
 		public string title;
+		/// <summary>
+		/// Link to the website of this feed
+		/// </summary>
 		public string link;
+		/// <summary>
+		/// Description of this feed
+		/// </summary>
 		public string description;
+		/// <summary>
+		/// Language of this Feed
+		/// e.g:
+		/// de-de : German (Germany)
+		/// en-us : American English
+		/// en-en : British English
+		/// </summary>
 		public string language;
+		/// <summary>
+		/// The feeds copyright
+		/// e. G:
+		/// (c) 2008-2010 Michael Schwarz
+		/// </summary>
 		public string copyright;
+		/// <summary>
+		/// Name of the tool that was used to create this feed
+		/// </summary>
 		public string generator;
 		
 		/// <summary>
 		/// Contains a link to the image
 		/// This is (by default) used as feed/logo when saving ATOM-Feeds
-		/// If you would prefer it to be used as feed/icon you have to set a specfifc config value in config.cs when compiling
+		/// If you would prefer it to be used as feed/icon you have to set a specific config value in config.cs when compiling
 		/// Therefore, you should use an image with the ratio of 2:1
 		/// </summary>
 		public string imageUrl;
@@ -59,7 +91,14 @@ namespace dotFeedLib
 		/// </summary>
 		public string imageLink;
 		
+		/// <summary>
+		/// the type of the feed (RSS or ATOM)
+		/// </summary>
 		public feedTypes feedType = feedTypes.RSS;
+		
+		/// <summary>
+		/// Array that contains all entries of this feed
+		/// </summary>
 		public entry[] entries;
 		
 				
@@ -103,7 +142,7 @@ namespace dotFeedLib
 		/// Rename a category
 		/// </summary>
 		/// <param name="old">old name</param>
-		/// <param name="new_text">new name</param>
+		/// <param name="new_name">new name</param>
 		public void rename_category(string old,string new_name)
 			{
 				foreach(entry element in entries)
@@ -198,7 +237,7 @@ namespace dotFeedLib
 		/// </summary>
 		/// <param name="entry_item">XML-Node of the current-Item</param>
 		/// <param name="entry_doc">XML-Document that contains current-Item</param>
-		/// <param name="entry_is_atom">Is-the entry ATOM</param>
+		/// <param name="inputFormat">the input format</param>
 		public void entry_add(XmlNode entry_item,XmlDocument entry_doc,feedTypes inputFormat)
 			{
 				entry[] entries_new;
@@ -405,7 +444,11 @@ namespace dotFeedLib
 			}
 			
 		}
-		
+		/// <summary>
+		/// If you have a GUID and want to get its position in entries[]
+		/// </summary>
+		/// <param name="guid">The GUID you're looking for</param>
+		/// <returns>position in entries[] or -1 if there's no entry with this GUID</returns>
 		public int getPositionOfEntryWithCertainGUID(string guid)
 		{
 			if(guid == "")
@@ -459,7 +502,10 @@ namespace dotFeedLib
 		}
 		
 
-
+		/// <summary>
+		/// Please do not use. Only for internal use
+		/// </summary>
+		/// <param name="doc">XMlDocument</param>
 		protected void readRestRSS(XmlDocument doc)
 			{
 				try
@@ -729,7 +775,6 @@ namespace dotFeedLib
 		///  Open ATOM file
 		/// </summary>
 		/// <param name="atom_path">path of the atom file</param>
-		/// <param name="fenster">hauptfenster</param>		
 		private void feedReadAtom(string atom_path)
 		{
 			
