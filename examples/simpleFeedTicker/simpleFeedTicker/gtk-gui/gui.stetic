@@ -1,0 +1,149 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<stetic-interface>
+  <configuration>
+    <images-root-path>..</images-root-path>
+    <target-gtk-version>2.12</target-gtk-version>
+  </configuration>
+  <import>
+    <widget-library name="glade-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
+    <widget-library name="../bin/Debug/simpleFeedTicker.exe" internal="true" />
+  </import>
+  <widget class="Gtk.Window" id="MainWindow" design-size="513 73">
+    <property name="MemberName" />
+    <property name="Title" translatable="yes">Just a feed ticker</property>
+    <property name="Icon">stock:stock_news Menu</property>
+    <property name="WindowPosition">CenterOnParent</property>
+    <property name="Resizable">False</property>
+    <property name="AllowGrow">False</property>
+    <property name="Gravity">West</property>
+    <signal name="DeleteEvent" handler="OnDeleteEvent" />
+    <child>
+      <widget class="Gtk.Fixed" id="fixed2">
+        <property name="MemberName" />
+        <property name="HasWindow">False</property>
+        <child>
+          <widget class="Gtk.EventBox" id="eventbox1">
+            <property name="MemberName" />
+            <signal name="ButtonPressEvent" handler="OnEventbox1ButtonPressEvent" />
+            <child>
+              <widget class="Gtk.Label" id="label1">
+                <property name="MemberName" />
+                <property name="WidthRequest">500</property>
+                <property name="LabelProp" translatable="yes">&lt;span size="x-large"&gt;Please wait....&lt;/span&gt;</property>
+                <property name="UseMarkup">True</property>
+                <property name="Ellipsize">End</property>
+              </widget>
+            </child>
+          </widget>
+          <packing>
+            <property name="X">5</property>
+            <property name="Y">5</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="Gtk.EventBox" id="eventbox2">
+            <property name="MemberName" />
+            <signal name="ButtonPressEvent" handler="OnImage1ButtonPressEvent" />
+            <child>
+              <widget class="Gtk.Image" id="image1">
+                <property name="MemberName" />
+                <property name="Pixbuf">stock:gtk-properties Menu</property>
+                <signal name="ButtonPressEvent" handler="OnImage1ButtonPressEvent" />
+              </widget>
+            </child>
+          </widget>
+          <packing>
+            <property name="X">486</property>
+            <property name="Y">28</property>
+          </packing>
+        </child>
+      </widget>
+    </child>
+  </widget>
+  <widget class="Gtk.Window" id="simpleFeedTicker.settingsWindow" design-size="399 303">
+    <property name="MemberName" />
+    <property name="Title" translatable="yes">Settings</property>
+    <property name="Icon">stock:gtk-properties Menu</property>
+    <property name="TypeHint">Dialog</property>
+    <property name="WindowPosition">CenterOnParent</property>
+    <property name="Modal">True</property>
+    <property name="Resizable">False</property>
+    <property name="AllowGrow">False</property>
+    <child>
+      <widget class="Gtk.Fixed" id="fixed1">
+        <property name="MemberName" />
+        <property name="HasWindow">False</property>
+        <child>
+          <widget class="Gtk.Entry" id="entry1">
+            <property name="MemberName" />
+            <property name="WidthRequest">282</property>
+            <property name="CanFocus">True</property>
+            <property name="IsEditable">True</property>
+            <property name="InvisibleChar">●</property>
+          </widget>
+          <packing>
+            <property name="X">108</property>
+            <property name="Y">7</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="Gtk.Label" id="label1">
+            <property name="MemberName" />
+            <property name="LabelProp" translatable="yes">URL of the feed</property>
+          </widget>
+          <packing>
+            <property name="X">16</property>
+            <property name="Y">10</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="Gtk.Button" id="button1">
+            <property name="MemberName" />
+            <property name="WidthRequest">60</property>
+            <property name="CanFocus">True</property>
+            <property name="Type">TextOnly</property>
+            <property name="Label" translatable="yes">OK</property>
+            <property name="UseUnderline">True</property>
+            <signal name="Clicked" handler="OnButton1Clicked" />
+          </widget>
+          <packing>
+            <property name="X">328</property>
+            <property name="Y">244</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="Gtk.Button" id="button2">
+            <property name="MemberName" />
+            <property name="WidthRequest">60</property>
+            <property name="CanFocus">True</property>
+            <property name="Type">TextOnly</property>
+            <property name="Label" translatable="yes">Abort</property>
+            <property name="UseUnderline">True</property>
+            <signal name="Clicked" handler="OnButton2Clicked" />
+          </widget>
+          <packing>
+            <property name="X">4</property>
+            <property name="Y">244</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="Gtk.Label" id="label2">
+            <property name="MemberName" />
+            <property name="WidthRequest">376</property>
+            <property name="LabelProp" translatable="yes">Just a feed ticker has been developed by Michael Schwarz. It is licensed under the terms of GNU GPL v3 or (at your option) any later version of this license.
+The main purpose of this piece of software is to illustrate how dotFeedLib works on Mono (GNU/Linux).
+To find out more about dotFeedLib visit the project webpage at:
+http://dotfeedlib.sourceforge.net/.
+</property>
+            <property name="Wrap">True</property>
+            <property name="Justify">Fill</property>
+          </widget>
+          <packing>
+            <property name="X">10</property>
+            <property name="Y">84</property>
+          </packing>
+        </child>
+      </widget>
+    </child>
+  </widget>
+</stetic-interface>
