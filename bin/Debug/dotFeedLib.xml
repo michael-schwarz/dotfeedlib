@@ -306,7 +306,7 @@
             <summary>
             Contains a link to the image
             This is (by default) used as feed/logo when saving ATOM-Feeds
-            If you would prefer it to be used as feed/icon you have to set a specfifc config value in config.cs when compiling
+            If you would prefer it to be used as feed/icon you have to set a specific config value in config.cs when compiling
             Therefore, you should use an image with the ratio of 2:1
             </summary>
         </member>
@@ -542,6 +542,11 @@
         <member name="F:dotFeedLib.feedTypes.RSS">
             <summary>
             Used when feed is a RSS-Feed
+            </summary>
+        </member>
+        <member name="F:dotFeedLib.feedTypes.MRSS">
+            <summary>
+            Used when feed is a RSS-Feed that uses MRSS  (see http://video.search.yahoo.com/mrss)
             </summary>
         </member>
         <member name="F:dotFeedLib.feedTypes.ATOM">

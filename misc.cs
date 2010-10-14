@@ -85,6 +85,10 @@ namespace dotFeedLib
         /// </summary>
 		RSS,
 		/// <summary>
+        /// Used when feed is a RSS-Feed that uses MRSS  (see http://video.search.yahoo.com/mrss)
+        /// </summary>
+		MRSS,
+		/// <summary>
         /// Used when feed is a ATOM-Feed
         /// </summary>
 		ATOM

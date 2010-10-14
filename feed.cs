@@ -18,7 +18,7 @@ namespace dotFeedLib
 		/// Is used to save configuration
 		/// </summary>
 		public config cfg = new config();
-		
+				
 		//Variables for content		
 		
 		/// <summary>
@@ -272,10 +272,19 @@ namespace dotFeedLib
 		/// <returns>XML-Code</returns>
 		public string getXML(feedTypes type)
 		{			
-			if(type == feedTypes.RSS)
+			if(type == feedTypes.RSS || type == feedTypes.MRSS)
 			   {
-			   		string xml = String.Concat("<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<rss version=\"2.0\">\r\n<channel>\r\n");
+			   		
+				
+					 string xml = "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<rss version=\"2.0\"";
 			 
+					 if(type == feedTypes.MRSS)
+					 {
+						xml = String.Concat(xml," xmlns:media=\"http://search.yahoo.com/mrss/\"");
+					 }
+			
+					 xml = String.Concat(xml,">\r\n<channel>\r\n");
+					 
 					 if(this.generator != "")
 					 {
 					 xml = String.Concat(xml,"<generator>",this.generator,"</generator>\r\n");
@@ -508,6 +517,16 @@ namespace dotFeedLib
 		/// <param name="doc">XMlDocument</param>
 		protected void readRestRSS(XmlDocument doc)
 			{
+				String s = doc.SelectSingleNode("rss").GetNamespaceOfPrefix("media");
+				if(s != "")
+				{
+					if(doc.SelectNodes("rss/channel/item/enclosure").Count < 1)
+					{
+						this.feedType = feedTypes.MRSS;
+					}				
+				}
+			
+			
 				try
 				{
 					version = doc.SelectSingleNode("rss").Attributes["version"].InnerText;
@@ -618,7 +637,7 @@ namespace dotFeedLib
 				{
 					if(item.Name == "item")
 					{
-					entries[count] = new entry(@item,doc,feedTypes.RSS);
+					entries[count] = new entry(@item,doc,feedType);
 					count++;
 					}
 				}
