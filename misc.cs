@@ -47,7 +47,7 @@ namespace dotFeedLib
 		{
 			try
 			{
-				return DateTime.ParseExact(date,"R",DateTimeFormatInfo.InvariantInfo);
+				return DateTime.ParseExact(date,"R",DateTimeFormatInfo.CurrentInfo);
 			}
 			catch(Exception)
 			{
@@ -72,7 +72,7 @@ namespace dotFeedLib
 		/// <returns>RSSDateConstruct</returns>
 		public static string DTtoRSS(DateTime dt)
 		{
-			return  dt.ToString("R");	
+			return  dt.ToUniversalTime().ToString("R",DateTimeFormatInfo.CurrentInfo);
 		}
 	}
 	/// <summary>
