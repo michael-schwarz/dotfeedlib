@@ -7,7 +7,7 @@ namespace dotFeedLib
 	/// <summary>
 	/// Description of entry.
 	/// </summary>
-	public class entry
+	public class entry :ICloneable
 	{
 		/// <summary>
 		/// Title of the entry
@@ -54,19 +54,32 @@ namespace dotFeedLib
 		/// </summary>
 		public categoryList category = new categoryList();
 		
-
+		
+		private string additionalXmlInternal = "";
 		
 		/// <summary>
-		/// Be careful: Is not updated when this entry is changed
+		/// Additional XML-Tags that should be added to the entries XML
+		/// Note: write-only you have to handle this completly by yourself; dotFeedLib does only add this;
+		/// apart from this,nothing happens with this information
+		/// </summary>
+		public string additionalXml
+		{
+			set
+			{
+				additionalXmlInternal = value;
+			}
+		}
+		
+		/// <summary>
+		/// Be careful: not updated
 		/// </summary>
 		public XmlDocument doc;
 		
+
 		/// <summary>
-		/// Be careful: Is not updated when this entry is changed
+		/// Be careful: not updated
 		/// </summary>
 		public XmlNode node;
-		
-
 		
 		/// <summary>
 		/// Creates a new entry out of an XML-Document
@@ -76,9 +89,11 @@ namespace dotFeedLib
 		/// <param name="inputType">Indicates whether this is ATOM or RSS</param>
 		public entry(XmlNode item,XmlDocument document,feedTypes inputType)
 			{
+				node = item;
+				doc = document;
 				if(inputType == feedTypes.RSS || inputType == feedTypes.MRSS)
 				{
-					XmlNamespaceManager nsmgr = new XmlNamespaceManager(document.NameTable);
+					XmlNamespaceManager nsmgr = new XmlNamespaceManager(doc.NameTable);
 					
 					if(inputType == feedTypes.MRSS)
 					{					
@@ -86,8 +101,7 @@ namespace dotFeedLib
 					}
 					
 					
-					node = item;
-					doc = document;
+
 					
 					try
 					{
@@ -203,7 +217,7 @@ namespace dotFeedLib
 					}
 	
 			
-					foreach (XmlNode @category_object in item.ChildNodes)
+					foreach (XmlNode @category_object in node.ChildNodes)
 					{
 						if(category_object.Name == "category")
 						{
@@ -215,11 +229,10 @@ namespace dotFeedLib
 				
 				else
 				{
-					XmlNamespaceManager nsmgr = new XmlNamespaceManager(document.NameTable);
+					XmlNamespaceManager nsmgr = new XmlNamespaceManager(doc.NameTable);
 					nsmgr.AddNamespace("atom", "http://www.w3.org/2005/Atom");
 									
-					node = item;
-					doc = document;
+
 					
 
 					
@@ -291,7 +304,6 @@ namespace dotFeedLib
 					
 					try
 					{ 
-						int t = node.SelectNodes("atom:link",nsmgr).Count;
 						
 						foreach (XmlNode n in node.SelectNodes("atom:link",nsmgr))
 					         {
@@ -334,7 +346,7 @@ namespace dotFeedLib
 				
 					foreach (XmlNode @category_object in node.SelectNodes("atom:category",nsmgr))
 					{
-							if(category_object.Attributes["label"].InnerText != "")
+						if(!String.IsNullOrEmpty(category_object.Attributes["label"].InnerText))
 								{
 									category.addCategory(category_object.Attributes["label"].InnerText);
 								}
@@ -375,6 +387,7 @@ namespace dotFeedLib
 			{
 				guid = System.Guid.NewGuid().ToString();
 			}
+							
 				
 		 /// <summary>
 		 /// Returns XML-Code for this feed
@@ -383,35 +396,24 @@ namespace dotFeedLib
 		 /// <returns>XML-Code for this feed</returns>
 		public string getXML(feedTypes type)
 		{
-			return getXML(type,"");
-		}
-			
-				
-		 /// <summary>
-		 /// Returns XML-Code for this feed
-		 /// </summary>
-		 /// <param name="type">desired type</param>
-		 /// <param name="additionalTags">string that contains all additional attributes that are used</param>
-		 /// <returns>XML-Code for this feed</returns>
-		public string getXML(feedTypes type,string additionalTags)
-		{
+			string additionalTags = additionalXmlInternal;
 			if(type == feedTypes.RSS || type == feedTypes.MRSS)
 			{
 				string xml = String.Concat("\r\n<item>\r\n<title>",HttpUtility.HtmlEncode(title),"</title>\r\n<description><![CDATA[",description);
 			 	xml = String.Concat(xml,"]]></description>\r\n");
 			 	
-			 	if(link != "")
+			 	if(!String.IsNullOrEmpty(link))
 			 	{
 			 		xml = String.Concat(xml,"<link>",HttpUtility.HtmlEncode(link),"</link>\r\n");
 			 	}
 			 	
-			 	if(author != "")
+			 	if(!String.IsNullOrEmpty(author))
 			 	{
 			 		xml = String.Concat(xml,"<author>",HttpUtility.HtmlEncode(author),"</author>\r\n");
 			 	}
 			 	
 			    string comm = "";
-			 	if(comments != "" && comments != null)
+			    if(!String.IsNullOrEmpty(comments))
 			 		{
 			 		comm = "<comments>";
 			 		comm = String.Concat(comm,HttpUtility.HtmlEncode(comments),"</comments>\r\n");
@@ -428,7 +430,7 @@ namespace dotFeedLib
 			 	
 			 	string enclosure = "";
 			 	
-			 	if(enclosure_url != "")
+			 	if(!String.IsNullOrEmpty(enclosure_url))
 			 		{
 			 			if(type == feedTypes.RSS)
 			 			{
@@ -440,7 +442,7 @@ namespace dotFeedLib
 			 			}
 			 		}
 			 	
-			 	if(guid != "")
+			 	if(!String.IsNullOrEmpty(guid))
 			 		{
 			 		xml = String.Concat(xml,"<guid  isPermaLink=\"false\">",HttpUtility.HtmlEncode(guid),"</guid>\r\n");
 			 		}
@@ -456,38 +458,37 @@ namespace dotFeedLib
 			{
 				string xml ="<entry>";
 		 	    
-		 		if(title != ""  && title != null)
+				if(!String.IsNullOrEmpty(title))
 		 			{
-		 			xml = String.Concat(xml,"\r\n<title>",HttpUtility.HtmlEncode(title),"</title>");
+		 				xml = String.Concat(xml,"\r\n<title>",HttpUtility.HtmlEncode(title),"</title>\r\n");
 		 			}
 		 		
-		 		if(description != "" && description != null)
+				if(!String.IsNullOrEmpty(description))
 		 	    	{
-		 	    	xml = String.Concat(xml,"\r\n<content type=\"html\"><![CDATA[",description);
-			 		xml = String.Concat(xml,"]]></content>\r\n<summary type=\"html\"><![CDATA[",description,"]]></summary>\r\n");
+			 	    	xml = String.Concat(xml,"\r\n<content type=\"html\"><![CDATA[",description);
+				 		xml = String.Concat(xml,"]]></content>\r\n<summary type=\"html\"><![CDATA[",description,"]]></summary>\r\n");
 		 	   		}
 			 	
-			 	if(link != "")
+				if(!String.IsNullOrEmpty(link))
 			 		{
-			 		xml = String.Concat(xml,"<link rel=\"alternate\" type=\"text/html\" href=\"",HttpUtility.HtmlEncode(link),"\"/>\r\n");
+			 			xml = String.Concat(xml,"<link rel=\"alternate\" type=\"text/html\" href=\"",HttpUtility.HtmlEncode(link),"\"/>\r\n");
 			 		}
 			 	
-			 	if(author != "")
+				if(!String.IsNullOrEmpty(author))
 			 		{
-			 		xml = String.Concat(xml,"<author><name>",HttpUtility.HtmlEncode(author),"</name></author>\r\n");
+			 			xml = String.Concat(xml,"<author><name>",HttpUtility.HtmlEncode(author),"</name></author>\r\n");
 			 		}
 			 	
 			 	foreach (string cat_hand in category.get_categories())
 			 		{
-
-			 		xml = String.Concat(xml,"<category label=\"",HttpUtility.HtmlEncode(cat_hand),"\" term=\"",HttpUtility.HtmlEncode(cat_hand),"\"/>\r\n");
+			 			xml = String.Concat(xml,"<category label=\"",HttpUtility.HtmlEncode(cat_hand),"\" term=\"",HttpUtility.HtmlEncode(cat_hand),"\"/>\r\n");
 			 		}
 			 	
 				string PubDate = "<updated>";
 				PubDate = String.Concat(PubDate,misc.DTtoAtom(pubDate),"</updated>\r\n");
 			 	
 			 	string enclosure = "";
-			 	if(enclosure_url != "")
+			 	if(!String.IsNullOrEmpty(enclosure_url))
 			 		{
 			 		enclosure= String.Concat("<link rel=\"enclosure\" href=\"",HttpUtility.HtmlEncode(enclosure_url),"\" type=\"",enclosure_type,"\" length=\"",enclosure_length,"\" title=\"Enclosure\" />\r\n");
 			 		}
@@ -497,6 +498,26 @@ namespace dotFeedLib
 				return xml;
 			}	
 			
+		}
+		
+		/// <summary>
+		/// Clones the object (Except pubDate and guid)
+		/// </summary>
+		/// <returns>Clone of the object</returns>
+		public object Clone()
+		{
+			entry n = new entry();
+			n.title = title;
+			n.description = description;
+			n.link = link;
+			n.author = author;
+			n.enclosure_url = enclosure_url;
+			n.enclosure_length = enclosure_length;
+			n.enclosure_type = enclosure_type;
+			n.comments = comments;
+			n.category.addCategory(category);
+			
+			return n;
 		}
 	
 	}

@@ -27,7 +27,7 @@ namespace dotFeedLib
 		/// <param name="author">author that is to be added</param>
 		public void author_add(string author)
 		{
-			if(authors.IndexOf(author) == -1 && author != "")
+			if(authors.IndexOf(author) == -1 && !String.IsNullOrEmpty(author))
 			{
 				authors.Add(author);
 			}

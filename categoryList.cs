@@ -8,7 +8,8 @@ namespace dotFeedLib
 	/// </summary>
 	public class categoryList
 	{
-	
+		
+		
 		// Autorenarray
 		List<String> categories;
 		
@@ -26,7 +27,7 @@ namespace dotFeedLib
 		/// <param name="category">name of the category</param>
 		public void addCategory(string category)
 		{
-			if(categories.IndexOf(category) == -1 && category != "")
+			if(categories.IndexOf(category) == -1 && !String.IsNullOrEmpty(category))
 			{
 				categories.Add(category);
 			}

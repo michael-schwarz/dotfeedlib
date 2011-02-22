@@ -26,6 +26,8 @@ namespace dotFeedLib
 		/// </summary>
 		string version;
 		
+		
+		
 		/// <summary>
 		/// RSS-Version
 		/// This is only set if the feed is a RSS-Feed
@@ -92,6 +94,11 @@ namespace dotFeedLib
 		public string imageLink;
 		
 		/// <summary>
+		/// The author of the whole feed (e.g. somebody@example.com (John Somebody)
+		/// </summary>
+		public string authorOfWholeFeed;
+		
+		/// <summary>
 		/// the type of the feed (RSS or ATOM)
 		/// </summary>
 		public feedTypes feedType = feedTypes.RSS;
@@ -101,7 +108,34 @@ namespace dotFeedLib
 		/// </summary>
 		public entry[] entries;
 		
-				
+		/// <summary>
+		/// If true, the atom namespace will be added to RSS-Feeds
+		/// If you set this to true, you can use atom:link="rel" in entries
+		/// </summary>
+		public bool useAtomAttributesInRss = false;
+		
+		/// <summary>
+		/// The path that can be used to rech this file
+		/// Is only used if feed is ATOM or if useAtomAttributesInRss is true
+		/// </summary>
+		public string linkToFeedItself = "";
+		
+
+		private string additionalXmlnsInternal = "";
+		
+		/// <summary>
+		/// Additional XMLNS-Declerations that should be added to the rss(RSS) or feed(ATOM) tag
+		/// Note: write-only you have to handle this completly by yourself; dotFeedLib does only add this;
+		/// apart from this,nothing happens with this information
+		/// </summary>
+		public string additionalXmlns
+		{
+			set
+			{
+				additionalXmlnsInternal = value;
+			}
+		}
+		
 		/// <summary>
 		/// If file has been saved as ATOM-Feed / RSS-Feed execute this
 		/// </summary>
@@ -174,7 +208,7 @@ namespace dotFeedLib
 			authorList authors = new authorList();
 			foreach(entry item in entries)
 			{
-				if(item.author != "" && item.author!= null)
+				if(!String.IsNullOrEmpty(item.author))
 				{
 					authors.author_add(item.author);
 				}
@@ -260,7 +294,29 @@ namespace dotFeedLib
 		
 			}
 		                    
-		
+		/// <summary>
+		/// Add an entry
+		/// </summary>
+		/// <param name="n">The entry that will be added (make sure you it's cloned if you want to copy an entry)</param>
+		public void entry_add_beginning(entry n)
+			{
+				entry[] entries_new;
+				int i =0;
+				
+				int new_length = entries.Length +1;
+				
+				entries_new = new entry[new_length];
+				
+				foreach (entry single_entry in entries)
+				{
+					entries_new[i+1] = single_entry;
+					i= i+1;
+				}
+				
+				entries_new[0] = n;
+				
+				entries = entries_new;
+			}
 	
 		
 	
@@ -278,52 +334,64 @@ namespace dotFeedLib
 				
 					 string xml = "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<rss version=\"2.0\"";
 			 
+					 //Start: declaration of additional namespaces
 					 if(type == feedTypes.MRSS)
 					 {
 						xml = String.Concat(xml," xmlns:media=\"http://search.yahoo.com/mrss/\"");
 					 }
-			
+					 
+					 if(useAtomAttributesInRss)
+					 {
+					 	xml = String.Concat(xml," xmlns:atom=\"http://www.w3.org/2005/Atom\"");					 	
+					 }
+					 if(!String.IsNullOrEmpty(additionalXmlnsInternal))
+					 {
+					 	xml = String.Concat(xml," ",additionalXmlnsInternal);
+					 }
+			 
+					 //End: decleration of additional namespaces
+					 
 					 xml = String.Concat(xml,">\r\n<channel>\r\n");
 					 
-					 if(this.generator != "")
+					 if(!String.IsNullOrEmpty(this.generator))
 					 {
-					 xml = String.Concat(xml,"<generator>",this.generator,"</generator>\r\n");
+					 	xml = String.Concat(xml,"<generator>",this.generator,"</generator>\r\n");
 					 }
 					
 					 xml = String.Concat(xml,"<title>",HttpUtility.HtmlEncode(this.title),"</title>\r\n<description>",HttpUtility.HtmlEncode((this.description)),"</description>\r\n");
 				
 					 
-					 if(this.link != "")
+					 if(!String.IsNullOrEmpty(this.link))
 					 {
 					 	xml = String.Concat(xml,"<link>",HttpUtility.HtmlEncode(this.link),"</link>\r\n");
 					 }
 					 	
 					 
-					 if(this.copyright != "")
+					 if(!String.IsNullOrEmpty(this.copyright))
 					 {
 					 	xml = String.Concat(xml,"<copyright>",HttpUtility.HtmlEncode(this.copyright),"</copyright>\r\n");
 					 }
 					 
-					 if(this.imageUrl != "")
+					 if(!String.IsNullOrEmpty(this.imageUrl))
 					 {
 					 	xml = String.Concat(xml,"<image><url>",this.imageUrl,"</url>");
 					 	
-					 	if(this.imageTitle != "")
+					 	if(!String.IsNullOrEmpty(this.imageTitle))
 					 	{
 					 		xml = String.Concat(xml,"<title>",this.imageTitle,"</title>");
 					 	}
 					 	else
 					 	{
-					 		xml = String.Concat(xml,"<title></title");
+					 		xml = String.Concat(xml,"<title></title>");
 					 	}
 					 	
-					 	if(this.imageLink != "")
+					 	if(!String.IsNullOrEmpty(this.imageLink))
 					 	{
-					 		xml = String.Concat(xml,"<link>",this.imageLink,"</link>");
+					 		xml = String.Concat(xml,"<link>",this.imageLink,"</link></image>\r\n");
 					 	}
 					 	else
 					 	{
-					 		xml = String.Concat(xml,"<link></link></image>");
+					 		xml = String.Concat(xml,"<link></link></image>\r\n");
 					 	}
 					 }
 					 
@@ -332,6 +400,17 @@ namespace dotFeedLib
 								 
 					
 					 xml = String.Concat(xml,misc.DTtoRSS(this.pubDate),"</pubDate>\r\n");
+					 
+					 if(useAtomAttributesInRss && !String.IsNullOrEmpty(linkToFeedItself))
+					 {
+					 	xml = String.Concat(xml,"<atom:link href=\"",linkToFeedItself,"\" rel=\"self\" type=\"application/rss+xml\" />\r\n");
+					 }
+					 
+					 if(!String.IsNullOrEmpty(authorOfWholeFeed))
+					 {
+					 	xml = String.Concat(xml,"<managingEditor>",HttpUtility.HtmlEncode(this.authorOfWholeFeed),"</managingEditor>\r\n");
+					 }
+					 
 					 foreach(entry element in entries)
 					 	{
 					 	xml = String.Concat(xml,element.getXML(type));
@@ -346,20 +425,32 @@ namespace dotFeedLib
 			
 			else
 				{
-					string xml = String.Concat("<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<feed xmlns=\"http://www.w3.org/2005/Atom\">\r\n");
+					 string xml = String.Concat("<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<feed xmlns=\"http://www.w3.org/2005/Atom\"");
+				     
+					 if(!String.IsNullOrEmpty(additionalXmlnsInternal))
+					 {
+					 	xml = String.Concat(xml," ",additionalXmlnsInternal);
+					 }
+					 
+					 if(!String.IsNullOrEmpty(language))
+					 {
+					 	xml = String.Concat(xml," xml:lang=\"",language,"\"");
+					 }
+					 	
+					 xml = String.Concat(xml,">\r\n");
 		
 		
 					 xml = String.Concat(xml,"<title>");
 					 xml = String.Concat(xml,HttpUtility.HtmlEncode(this.title),"</title>\r\n<subtitle>",HttpUtility.HtmlEncode(this.description),"</subtitle>\r\n");
 					 
-					 if(this.link != "")
+					 if(!String.IsNullOrEmpty(this.link))
 					 	{
 					 	xml = String.Concat(xml,"<link href=\"",HttpUtility.HtmlEncode(this.link),"\"/>\r\n");
 					 	}
 					 
 				
 					 
-					  if(this.copyright != "")
+					 if(!String.IsNullOrEmpty(this.copyright))
 					 	{
 					  	xml = String.Concat(xml,"<rights>",HttpUtility.HtmlEncode(this.copyright),"</rights>\r\n");
 					  	}
@@ -367,7 +458,7 @@ namespace dotFeedLib
 					 
 					 xml = String.Concat(xml,"<generator uri=\"http://easy-feed-editor.tk\" version=\"1.0\">dotFeedLib</generator>\r\n");
 					 
-					 if(this.imageUrl != "")
+					 if(!String.IsNullOrEmpty(this.imageUrl))
 					 {
 
 						
@@ -381,6 +472,17 @@ namespace dotFeedLib
 							}
 					 }
 					 
+					   if(!String.IsNullOrEmpty(authorOfWholeFeed))
+					 {
+					 	xml = String.Concat(xml,"<author><name>",HttpUtility.HtmlEncode(this.authorOfWholeFeed),"</name></author>\r\n");
+					 }
+					 //TODO: schaun ob pubdate überhaupt bei ATOM eingelesen wird
+					 xml = String.Concat(xml,"<updated>",misc.DTtoAtom(this.pubDate),"</updated>\r\n");
+					 
+					 if(!String.IsNullOrEmpty(linkToFeedItself))
+					 {
+					 	xml = String.Concat(xml,"<link href=\"",linkToFeedItself,"\" rel=\"self\" type=\"application/atom+xml\" />\r\n");
+					 }
 					 
 					 foreach(entry element in entries)
 					 	{						 	
@@ -445,7 +547,7 @@ namespace dotFeedLib
 		
 			foreach(entry element in entries)
 			{
-				if(element.guid == "")
+				if(String.IsNullOrEmpty(element.guid))
 				{
 					element.add_new_guid();
 
@@ -460,7 +562,7 @@ namespace dotFeedLib
 		/// <returns>position in entries[] or -1 if there's no entry with this GUID</returns>
 		public int getPositionOfEntryWithCertainGUID(string guid)
 		{
-			if(guid == "")
+			if(String.IsNullOrEmpty(guid))
 			{
 				return -1;
 			}
@@ -471,7 +573,7 @@ namespace dotFeedLib
 	
 				foreach(entry ein in entries)
 					{
-						if(ein.guid != "")
+					if(!String.IsNullOrEmpty(ein.guid))
 							{
 							guids.Add(ein.guid);
 							}
@@ -504,12 +606,19 @@ namespace dotFeedLib
 			copyright = "";
 	
 			generator = "";
-
+			authorOfWholeFeed = "";
+			useAtomAttributesInRss = false;
+			linkToFeedItself = "";
+			
 			entries= new entry[0];
 			
 
 		}
 		
+		private static bool namespaceIsDefinedRSS(XmlDocument doc,string ns)
+		{
+			return (!String.IsNullOrEmpty(doc.SelectSingleNode("rss").GetNamespaceOfPrefix(ns)));
+		}
 
 		/// <summary>
 		/// Please do not use. Only for internal use
@@ -517,13 +626,37 @@ namespace dotFeedLib
 		/// <param name="doc">XMlDocument</param>
 		protected void readRestRSS(XmlDocument doc)
 			{
-				String s = doc.SelectSingleNode("rss").GetNamespaceOfPrefix("media");
-				if(s != "")
+
+				if(namespaceIsDefinedRSS(doc,"media"))
 				{
 					if(doc.SelectNodes("rss/channel/item/enclosure").Count < 1)
 					{
 						this.feedType = feedTypes.MRSS;
 					}				
+				}
+		
+				if(namespaceIsDefinedRSS(doc,"atom"))
+				{
+					useAtomAttributesInRss = true;
+					
+					XmlNamespaceManager nsmgr = new XmlNamespaceManager(doc.NameTable);
+					nsmgr.AddNamespace("atom", "http://www.w3.org/2005/Atom");
+					
+					foreach(XmlNode n in doc.SelectNodes("rss/channel/atom:link",nsmgr))
+					{
+						try
+						{
+							if(n.Attributes["rel"].Value == "self")
+							{
+								linkToFeedItself = n.Attributes["href"].Value;
+							}
+						}
+						catch(Exception)
+						{
+							
+						}
+					}
+					
 				}
 			
 			
@@ -580,6 +713,16 @@ namespace dotFeedLib
 				{
 					copyright = "";
 				}
+				
+				try
+				{
+					authorOfWholeFeed = doc.SelectSingleNode("rss/channel/managingEditor").InnerText;
+				}
+				catch(Exception)
+				{
+					authorOfWholeFeed = "";
+				}
+				
 				try
 				{
 					pubDate = misc.DTfromRSS(doc.SelectSingleNode("rss/channel/pubDate").InnerText);
@@ -644,7 +787,7 @@ namespace dotFeedLib
 			}
 		
 		
-		private bool is_rss(XmlDocument doc)
+		private static bool is_rss(XmlDocument doc)
 		{
 			try
 			{
@@ -658,7 +801,7 @@ namespace dotFeedLib
 					
 		}
 		
-		private bool is_atom(XmlDocument doc)
+		private static bool is_atom(XmlDocument doc)
 		{
 			try
 				{
@@ -701,7 +844,7 @@ namespace dotFeedLib
 						 else if(is_atom(doc) == true)
 							{
 						 		feedType = feedTypes.ATOM;
-						 		feedReadAtom(path);
+						 		feedReadAtom();
 							}
 						else
 							{							
@@ -722,8 +865,8 @@ namespace dotFeedLib
 					}
 				
 					catch(Exception)
-					{		
-						throw new NotValidXmlFileException();		
+					{						
+						throw new NotValidXmlFileException();
 					}
 			
 				}
@@ -746,7 +889,7 @@ namespace dotFeedLib
 						 else if(is_atom(doc) == true)
 							{
 						 		feedType = feedTypes.ATOM;
-								feedReadAtom(path);
+								feedReadAtom();
 							}
 						else
 							{
@@ -770,7 +913,7 @@ namespace dotFeedLib
 					
 					catch(Exception)
 					{		
-						throw new NotValidXmlFileException();		
+						throw new NotValidXmlFileException();
 					}
 			}
 			
@@ -793,8 +936,7 @@ namespace dotFeedLib
 		/// <summary>
 		///  Open ATOM file
 		/// </summary>
-		/// <param name="atom_path">path of the atom file</param>
-		private void feedReadAtom(string atom_path)
+		private void feedReadAtom()
 		{
 			
 	
@@ -804,16 +946,7 @@ namespace dotFeedLib
 			nsmgr = new XmlNamespaceManager(doc.NameTable);
 			nsmgr.AddNamespace("atom", "http://www.w3.org/2005/Atom");
 
-			try
-			{
 
-				title =  doc.SelectSingleNode("atom:feed", nsmgr).SelectSingleNode("atom:title", nsmgr).InnerText;
-			}
-			catch(Exception)
-			{
-
-				title =  "";
-			}
 			
 			try
 			{
@@ -822,6 +955,30 @@ namespace dotFeedLib
 			catch(Exception)
 			{
 				title = "";
+			}
+			
+			try
+			{
+				pubDate = misc.DTfromAtom(doc.SelectSingleNode("atom:updated").InnerText);
+			}
+			catch(Exception)
+			{
+				
+			}
+			
+			foreach(XmlNode n in doc.SelectNodes("atom:feed/atom:link",nsmgr))
+			{
+				try
+				{
+					if(n.Attributes["rel"].Value == "self")
+					{
+						linkToFeedItself = n.Attributes["href"].Value;
+					}
+				}
+				catch(Exception)
+				{
+					
+				}
 			}
 			
 			try
@@ -842,8 +999,15 @@ namespace dotFeedLib
 				description = "";
 			}					
 			
+			try
+			{
+				language = doc.SelectSingleNode("atom:feed", nsmgr).Attributes["xml:lang"].Value;
+			}
+			catch(Exception)
+			{
+				language = "";
+			}	
 
-			language = "";
 			
 			try
 			{
@@ -865,7 +1029,15 @@ namespace dotFeedLib
 			{
 				generator = "";
 			}
-
+			
+			try
+			{
+				authorOfWholeFeed = doc.SelectSingleNode("atom:feed", nsmgr).SelectSingleNode("atom:author",nsmgr).InnerText;
+			}
+			catch(Exception)
+			{
+				authorOfWholeFeed = "";
+			}
 			
 			entries= new entry[doc.SelectSingleNode("atom:feed", nsmgr).SelectNodes("atom:entry", nsmgr).Count];
 			

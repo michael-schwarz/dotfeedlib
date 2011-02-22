@@ -47,7 +47,8 @@ namespace dotFeedLib
 		{
 			try
 			{
-				return DateTime.ParseExact(date,"R",DateTimeFormatInfo.CurrentInfo);
+				DateTime dt = DateTime.ParseExact(date,"R",DateTimeFormatInfo.InvariantInfo);
+				return dt.ToLocalTime();
 			}
 			catch(Exception)
 			{

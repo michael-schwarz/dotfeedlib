@@ -205,12 +205,12 @@
         </member>
         <member name="F:dotFeedLib.entry.doc">
             <summary>
-            Be careful: Is not updated when this entry is changed
+            Be careful: not updated
             </summary>
         </member>
         <member name="F:dotFeedLib.entry.node">
             <summary>
-            Be careful: Is not updated when this entry is changed
+            Be careful: not updated
             </summary>
         </member>
         <member name="M:dotFeedLib.entry.#ctor(System.Xml.XmlNode,System.Xml.XmlDocument,dotFeedLib.feedTypes)">
@@ -238,13 +238,18 @@
             <param name="type">desired type</param>
             <returns>XML-Code for this feed</returns>
         </member>
-        <member name="M:dotFeedLib.entry.getXML(dotFeedLib.feedTypes,System.String)">
+        <member name="M:dotFeedLib.entry.Clone">
             <summary>
-            Returns XML-Code for this feed
+            Clones the object (Except pubDate and guid)
             </summary>
-            <param name="type">desired type</param>
-            <param name="additionalTags">string that contains all additional attributes that are used</param>
-            <returns>XML-Code for this feed</returns>
+            <returns>Clone of the object</returns>
+        </member>
+        <member name="P:dotFeedLib.entry.additionalXml">
+            <summary>
+            Additional XML-Tags that should be added to the entries XML
+            Note: write-only you have to handle this completly by yourself; dotFeedLib does only add this;
+            apart from this,nothing happens with this information
+            </summary>
         </member>
         <member name="T:dotFeedLib.feed">
             <summary>
@@ -320,6 +325,11 @@
             Not part of ATOM-specification. Please set this to the same value as feed.link
             </summary>
         </member>
+        <member name="F:dotFeedLib.feed.authorOfWholeFeed">
+            <summary>
+            The author of the whole feed (e.g. somebody@example.com (John Somebody)
+            </summary>
+        </member>
         <member name="F:dotFeedLib.feed.feedType">
             <summary>
             the type of the feed (RSS or ATOM)
@@ -328,6 +338,18 @@
         <member name="F:dotFeedLib.feed.entries">
             <summary>
             Array that contains all entries of this feed
+            </summary>
+        </member>
+        <member name="F:dotFeedLib.feed.useAtomAttributesInRss">
+            <summary>
+            If true, the atom namespace will be added to RSS-Feeds
+            If you set this to true, you can use atom:link="rel" in entries
+            </summary>
+        </member>
+        <member name="F:dotFeedLib.feed.linkToFeedItself">
+            <summary>
+            The path that can be used to rech this file
+            Is only used if feed is ATOM or if useAtomAttributesInRss is true
             </summary>
         </member>
         <member name="M:dotFeedLib.feed.changeFormat(dotFeedLib.feedTypes)">
@@ -389,6 +411,12 @@
             <param name="entry_doc">XML-Document that contains current-Item</param>
             <param name="inputFormat">the input format</param>
         </member>
+        <member name="M:dotFeedLib.feed.entry_add_beginning(dotFeedLib.entry)">
+            <summary>
+            Add an entry
+            </summary>
+            <param name="n">The entry that will be added (make sure you it's cloned if you want to copy an entry)</param>
+        </member>
         <member name="M:dotFeedLib.feed.getXML(dotFeedLib.feedTypes)">
             <summary>
             Returns the feeds XML
@@ -440,11 +468,10 @@
             </summary>
             <param name="path">absolute path or valid URI</param>
         </member>
-        <member name="M:dotFeedLib.feed.feedReadAtom(System.String)">
+        <member name="M:dotFeedLib.feed.feedReadAtom">
             <summary>
              Open ATOM file
             </summary>
-            <param name="atom_path">path of the atom file</param>
         </member>
         <member name="M:dotFeedLib.feed.save(System.String,dotFeedLib.feedTypes)">
             <summary>
@@ -457,6 +484,13 @@
             <summary>
             RSS-Version
             This is only set if the feed is a RSS-Feed
+            </summary>
+        </member>
+        <member name="P:dotFeedLib.feed.additionalXmlns">
+            <summary>
+            Additional XMLNS-Declerations that should be added to the rss(RSS) or feed(ATOM) tag
+            Note: write-only you have to handle this completly by yourself; dotFeedLib does only add this;
+            apart from this,nothing happens with this information
             </summary>
         </member>
         <member name="T:dotFeedLib.FileTypeNotSupportedException">
