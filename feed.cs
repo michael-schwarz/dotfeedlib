@@ -4,7 +4,7 @@ using System.Xml;
 using System.IO;
 using System.Web;
 
-
+[assembly:CLSCompliant(true)]
 namespace dotFeedLib
 {
 	/// <summary>
@@ -620,6 +620,172 @@ namespace dotFeedLib
 			return (!String.IsNullOrEmpty(doc.SelectSingleNode("rss").GetNamespaceOfPrefix(ns)));
 		}
 
+		/// <summary>
+		/// function added for Easy Feed Editor. Not supported -> don't use anywhere else
+		/// </summary>
+		/// <param name="doc">XMlDocument</param>
+		protected void readRestRssAfterRedo(XmlDocument doc)
+			{
+
+				if(namespaceIsDefinedRSS(doc,"media"))
+				{
+					if(doc.SelectNodes("rss/channel/item/enclosure").Count < 1)
+					{
+						this.feedType = feedTypes.MRSS;
+					}				
+				}
+		
+				if(namespaceIsDefinedRSS(doc,"atom"))
+				{
+					useAtomAttributesInRss = true;
+					
+					XmlNamespaceManager nsmgr = new XmlNamespaceManager(doc.NameTable);
+					nsmgr.AddNamespace("atom", "http://www.w3.org/2005/Atom");
+					
+					foreach(XmlNode n in doc.SelectNodes("rss/channel/atom:link",nsmgr))
+					{
+						try
+						{
+							if(n.Attributes["rel"].Value == "self")
+							{
+								linkToFeedItself = n.Attributes["href"].Value;
+							}
+						}
+						catch(Exception)
+						{
+							
+						}
+					}
+					
+				}
+			
+			
+				try
+				{
+					version = doc.SelectSingleNode("rss").Attributes["version"].InnerText;
+				}
+		
+				catch(Exception)
+				{
+					version = "";
+				}
+			
+			
+				try
+				{
+					title = doc.SelectSingleNode("rss/channel/title").InnerText;
+				}
+				catch(Exception)
+				{
+					title = "";
+				}
+				try
+				{
+					link = doc.SelectSingleNode("rss/channel/link").InnerText;
+				}
+				catch(Exception)
+				{
+					link = "";
+				}
+				try
+				{
+					description = doc.SelectSingleNode("rss/channel/description").InnerText;
+				}
+				catch(Exception)
+				{
+					description = "";
+				}					
+				
+				try
+				{
+					language = doc.SelectSingleNode("rss/channel/language").InnerText;
+				}
+				catch(Exception)
+				{
+					language = "";
+				}
+				
+				try
+				{
+					copyright = doc.SelectSingleNode("rss/channel/copyright").InnerText;
+				}
+				catch(Exception)
+				{
+					copyright = "";
+				}
+				
+				try
+				{
+					authorOfWholeFeed = doc.SelectSingleNode("rss/channel/managingEditor").InnerText;
+				}
+				catch(Exception)
+				{
+					authorOfWholeFeed = "";
+				}
+				
+				try
+				{
+					pubDate = misc.DTfromRSS(doc.SelectSingleNode("rss/channel/pubDate").InnerText);
+				}
+				catch(Exception)
+				{
+					
+				}
+				
+				try
+				{
+					generator = doc.SelectSingleNode("rss/channel/generator").InnerText;
+				}
+				catch(Exception)
+				{
+					generator = "";
+				}
+				
+				try
+				{
+					imageUrl = doc.SelectSingleNode("rss/channel/image/url").InnerText;
+					
+					try
+					{
+						imageLink = doc.SelectSingleNode("rss/channel/image/link").InnerText;
+					}
+					catch(Exception)
+					{
+						imageLink = "";
+					}
+					
+					try
+					{
+						imageTitle = doc.SelectSingleNode("rss/channel/image/title").InnerText;
+					}
+					catch(Exception)
+					{
+						imageTitle = "";
+					}
+				}
+				catch(Exception)
+				{
+					imageUrl = "";
+					imageLink = "";
+					imageTitle = "";
+				}
+				
+				
+				
+				XmlNodeList list = doc.SelectNodes("rss/channel/item");	
+				entries = new entry[list.Count];
+				
+				int count=0;
+				foreach (XmlNode @item in list)
+				{
+					if(item.Name == "item")
+					{
+					entries[count] = new entry(@item,doc,feedTypes.RSS);
+					count++;
+					}
+				}
+			}
+		
 		/// <summary>
 		/// Please do not use. Only for internal use
 		/// </summary>

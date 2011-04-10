@@ -456,6 +456,12 @@
             <param name="newFeed">ignored</param>
             <param name="languageCode">languageCode for the new feed e.g. en-us or de-de</param>
         </member>
+        <member name="M:dotFeedLib.feed.readRestRssAfterRedo(System.Xml.XmlDocument)">
+            <summary>
+            function added for Easy Feed Editor. Not supported -> don't use anywhere else
+            </summary>
+            <param name="doc">XMlDocument</param>
+        </member>
         <member name="M:dotFeedLib.feed.readRestRSS(System.Xml.XmlDocument)">
             <summary>
             Please do not use. Only for internal use
