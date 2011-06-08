@@ -393,7 +393,7 @@
         </member>
         <member name="M:dotFeedLib.feed.get_categories">
             <summary>
-            Get an array that contains all categories that are udes in this feed
+            Get an array that contains all categories that are used in this feed
             </summary>
             <returns>categoryList that conatains all categories</returns>
         </member>

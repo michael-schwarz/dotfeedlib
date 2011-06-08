@@ -183,7 +183,14 @@ namespace dotFeedLib
 			{
 				foreach(entry element in entries)
 				{
-					element.category.rename_category(old,new_name);
+					try
+					{
+						element.category.rename_category(old,new_name);
+					}
+					catch(NoSuchCategoryException)
+					{
+						//No need to do anything because not every feed is in every category
+					}
 				}
 			
 			}
@@ -221,7 +228,7 @@ namespace dotFeedLib
 
 		
 		/// <summary>
-		/// Get an array that contains all categories that are udes in this feed
+		/// Get an array that contains all categories that are used in this feed
 		/// </summary>
 		/// <returns>categoryList that conatains all categories</returns>
 		public categoryList get_categories()
