@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Xml;
 using System.IO;
 using System.Web;
+using System.Net;
+using System.Text;
 
 [assembly:CLSCompliant(true)]
 namespace dotFeedLib
@@ -476,7 +478,7 @@ namespace dotFeedLib
 					 {
 					 	xml = String.Concat(xml,"<author><name>",HttpUtility.HtmlEncode(this.authorOfWholeFeed),"</name></author>\r\n");
 					 }
-					 //TODO: schaun ob pubdate überhaupt bei ATOM eingelesen wird
+					 
 					 xml = String.Concat(xml,"<updated>",misc.DTtoAtom(this.pubDate),"</updated>\r\n");
 					 
 					 if(!String.IsNullOrEmpty(linkToFeedItself))
@@ -997,24 +999,23 @@ namespace dotFeedLib
 			if(misc.IsUrl(path))
 				{				
 					try
-					{
-						doc.Load(path);
-						
-						
+					{				
+						doc.Load(path);					
+							
 						if(is_rss(doc) == true)
 							{			
-								
+									
 								readRestRSS(doc);
 							}
-						
-						 else if(is_atom(doc) == true)
+							
+						else if(is_atom(doc) == true)
 							{
-						 		feedType = feedTypes.ATOM;
-						 		feedReadAtom();
+							 	feedType = feedTypes.ATOM;
+							 	feedReadAtom();
 							}
 						else
 							{							
-							throw new FileTypeNotSupportedException();
+								throw new FileTypeNotSupportedException();
 							}					
 
 					}
