@@ -82,11 +82,13 @@ Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classdot_feed_lib_1_1author_list.html">authorList</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdot_feed_lib_1_1feed.html#a39627038f2ba590ac96634160031ac6d">get_authors</a> ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Get an array that contains all authors that are used in this feed.  <a href="#a39627038f2ba590ac96634160031ac6d"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classdot_feed_lib_1_1category_list.html">categoryList</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdot_feed_lib_1_1feed.html#a06df009650e72eed4bf88a28ec5f6c28">get_categories</a> ()</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Get an array that contains all categories that are udes in this feed.  <a href="#a06df009650e72eed4bf88a28ec5f6c28"></a><br/></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Get an array that contains all categories that are used in this feed.  <a href="#a06df009650e72eed4bf88a28ec5f6c28"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdot_feed_lib_1_1feed.html#a529b2c292d3564fb9dcb2ded17b17dc1">new_entry</a> ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Add a new entry.  <a href="#a529b2c292d3564fb9dcb2ded17b17dc1"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdot_feed_lib_1_1feed.html#a0edcb6a359d78eb720dce15c4cfc4505">entry_add</a> (XmlNode entry_item, XmlDocument entry_doc, <a class="el" href="namespacedot_feed_lib.html#aa179211c6555d47b934f17586110e7c0">feedTypes</a> inputFormat)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Adds a new entry (part of the merge feeds functiionality / the open functionality).  <a href="#a0edcb6a359d78eb720dce15c4cfc4505"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdot_feed_lib_1_1feed.html#ad0791444568c8e20bb673bbe2912fa0d">entry_add_beginning</a> (<a class="el" href="classdot_feed_lib_1_1entry.html">entry</a> n)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Add an entry.  <a href="#ad0791444568c8e20bb673bbe2912fa0d"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">string&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdot_feed_lib_1_1feed.html#aa8b65db154779235fda636511840aeaa">getXML</a> (<a class="el" href="namespacedot_feed_lib.html#aa179211c6555d47b934f17586110e7c0">feedTypes</a> type)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Returns the feeds XML.  <a href="#aa8b65db154779235fda636511840aeaa"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdot_feed_lib_1_1feed.html#a9af6838b7e6882b00446038c06a5d85a">deleteEntry</a> (int number)</td></tr>
@@ -127,18 +129,28 @@ Public Attributes</h2></td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Not part of ATOM-specification. Please set this to the same value as <a class="el" href="classdot_feed_lib_1_1feed.html#acffcd493635a8d05465221a10faef46c" title="Title of the feed.">feed.title</a>.  <a href="#a4baf0ec4f118e1f4edc19e4d9ded34bc"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">string&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdot_feed_lib_1_1feed.html#a39f12d5c33b036b05ac39925a700521f">imageLink</a></td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Not part of ATOM-specification. Please set this to the same value as <a class="el" href="classdot_feed_lib_1_1feed.html#a567745c5008d3ad2c051f6528114c145" title="Link to the website of this feed.">feed.link</a>.  <a href="#a39f12d5c33b036b05ac39925a700521f"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">string&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdot_feed_lib_1_1feed.html#a556475d0f614d355648e85d90634268c">authorOfWholeFeed</a></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">The author of the whole feed (e.g. <a href="mailto:somebody@example.com">somebody@example.com</a> (John Somebody).  <a href="#a556475d0f614d355648e85d90634268c"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacedot_feed_lib.html#aa179211c6555d47b934f17586110e7c0">feedTypes</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdot_feed_lib_1_1feed.html#a9a83cb09e61748f0193fb39b0cc76968">feedType</a> = feedTypes.RSS</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">the type of the feed (RSS or ATOM)  <a href="#a9a83cb09e61748f0193fb39b0cc76968"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classdot_feed_lib_1_1entry.html">entry</a>[]&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdot_feed_lib_1_1feed.html#afda0654ca78533299ae4038d02438095">entries</a></td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Array that contains all entries of this feed.  <a href="#afda0654ca78533299ae4038d02438095"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdot_feed_lib_1_1feed.html#ae75cdd791206ce3b5cf52c0075c25156">useAtomAttributesInRss</a> = false</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">If true, the atom namespace will be added to RSS-Feeds If you set this to true, you can use atom:link="rel" in entries.  <a href="#ae75cdd791206ce3b5cf52c0075c25156"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">string&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdot_feed_lib_1_1feed.html#ad05525d92bed37a88f2836fc5ce03ea3">linkToFeedItself</a> = &quot;&quot;</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">The path that can be used to rech this file Is only used if feed is ATOM or if useAtomAttributesInRss is true.  <a href="#ad05525d92bed37a88f2836fc5ce03ea3"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdot_feed_lib_1_1feed.html#a391c46c17c408a420d1e5c6e5cd4c5b3">readRestRssAfterRedo</a> (XmlDocument doc)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">function added for Easy Feed Editor. Not supported -&gt; don't use anywhere else  <a href="#a391c46c17c408a420d1e5c6e5cd4c5b3"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdot_feed_lib_1_1feed.html#a4353a9fa5d29604e71942c1c3087ef7a">readRestRSS</a> (XmlDocument doc)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Please do not use. Only for internal use.  <a href="#a4353a9fa5d29604e71942c1c3087ef7a"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="properties"></a>
 Properties</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">string&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdot_feed_lib_1_1feed.html#acd6ddc64b4c38e6830f9086213915beb">rssVersion</a><code> [get]</code></td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">RSS-Version This is only set if the feed is a RSS-Feed.  <a href="#acd6ddc64b4c38e6830f9086213915beb"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">string&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdot_feed_lib_1_1feed.html#a47dc85852b8af7e92fec5905e6b836af">additionalXmlns</a><code> [set]</code></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Additional XMLNS-Declerations that should be added to the rss(RSS) or feed(ATOM) tag Note: write-only you have to handle this completly by yourself; <a class="el" href="namespacedot_feed_lib.html">dotFeedLib</a> does only add this; apart from this,nothing happens with this information.  <a href="#a47dc85852b8af7e92fec5905e6b836af"></a><br/></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
 <p>Class that contains all information on a feed. </p>
@@ -320,6 +332,32 @@ Properties</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="ad0791444568c8e20bb673bbe2912fa0d"></a><!-- doxytag: member="dotFeedLib::feed::entry_add_beginning" ref="ad0791444568c8e20bb673bbe2912fa0d" args="(entry n)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void dotFeedLib.feed.entry_add_beginning </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classdot_feed_lib_1_1entry.html">entry</a>&nbsp;</td>
+          <td class="paramname"> <em>n</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Add an entry. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>n</em>&nbsp;</td><td>The entry that will be added (make sure you it's cloned if you want to copy an entry)</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a class="anchor" id="a39627038f2ba590ac96634160031ac6d"></a><!-- doxytag: member="dotFeedLib::feed::get_authors" ref="a39627038f2ba590ac96634160031ac6d" args="()" -->
 <div class="memitem">
 <div class="memproto">
@@ -355,7 +393,7 @@ Properties</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Get an array that contains all categories that are udes in this feed. </p>
+<p>Get an array that contains all categories that are used in this feed. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd><a class="el" href="classdot_feed_lib_1_1category_list.html" title="Contains a list of categories.">categoryList</a> that conatains all categories</dd></dl>
 
 </div>
@@ -478,6 +516,32 @@ Properties</h2></td></tr>
 <div class="memdoc">
 
 <p>Please do not use. Only for internal use. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>doc</em>&nbsp;</td><td>XMlDocument</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a391c46c17c408a420d1e5c6e5cd4c5b3"></a><!-- doxytag: member="dotFeedLib::feed::readRestRssAfterRedo" ref="a391c46c17c408a420d1e5c6e5cd4c5b3" args="(XmlDocument doc)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void dotFeedLib.feed.readRestRssAfterRedo </td>
+          <td>(</td>
+          <td class="paramtype">XmlDocument&nbsp;</td>
+          <td class="paramname"> <em>doc</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [protected]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>function added for Easy Feed Editor. Not supported -&gt; don't use anywhere else </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>doc</em>&nbsp;</td><td>XMlDocument</td></tr>
@@ -658,6 +722,21 @@ Properties</h2></td></tr>
 </div>
 </div>
 <hr/><h2>Member Data Documentation</h2>
+<a class="anchor" id="a556475d0f614d355648e85d90634268c"></a><!-- doxytag: member="dotFeedLib::feed::authorOfWholeFeed" ref="a556475d0f614d355648e85d90634268c" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">string <a class="el" href="classdot_feed_lib_1_1feed.html#a556475d0f614d355648e85d90634268c">dotFeedLib.feed.authorOfWholeFeed</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>The author of the whole feed (e.g. <a href="mailto:somebody@example.com">somebody@example.com</a> (John Somebody). </p>
+
+</div>
+</div>
 <a class="anchor" id="a40673f7946f63de586375d178f0c3c1e"></a><!-- doxytag: member="dotFeedLib::feed::cfg" ref="a40673f7946f63de586375d178f0c3c1e" args="" -->
 <div class="memitem">
 <div class="memproto">
@@ -823,6 +902,21 @@ Properties</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="ad05525d92bed37a88f2836fc5ce03ea3"></a><!-- doxytag: member="dotFeedLib::feed::linkToFeedItself" ref="ad05525d92bed37a88f2836fc5ce03ea3" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">string <a class="el" href="classdot_feed_lib_1_1feed.html#ad05525d92bed37a88f2836fc5ce03ea3">dotFeedLib.feed.linkToFeedItself</a> = &quot;&quot;</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>The path that can be used to rech this file Is only used if feed is ATOM or if useAtomAttributesInRss is true. </p>
+
+</div>
+</div>
 <a class="anchor" id="a343797734c353c1b8c358e29d3722e66"></a><!-- doxytag: member="dotFeedLib::feed::pubDate" ref="a343797734c353c1b8c358e29d3722e66" args="" -->
 <div class="memitem">
 <div class="memproto">
@@ -853,7 +947,37 @@ Properties</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="ae75cdd791206ce3b5cf52c0075c25156"></a><!-- doxytag: member="dotFeedLib::feed::useAtomAttributesInRss" ref="ae75cdd791206ce3b5cf52c0075c25156" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool <a class="el" href="classdot_feed_lib_1_1feed.html#ae75cdd791206ce3b5cf52c0075c25156">dotFeedLib.feed.useAtomAttributesInRss</a> = false</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>If true, the atom namespace will be added to RSS-Feeds If you set this to true, you can use atom:link="rel" in entries. </p>
+
+</div>
+</div>
 <hr/><h2>Property Documentation</h2>
+<a class="anchor" id="a47dc85852b8af7e92fec5905e6b836af"></a><!-- doxytag: member="dotFeedLib::feed::additionalXmlns" ref="a47dc85852b8af7e92fec5905e6b836af" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">string dotFeedLib.feed.additionalXmlns<code> [set]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Additional XMLNS-Declerations that should be added to the rss(RSS) or feed(ATOM) tag Note: write-only you have to handle this completly by yourself; <a class="el" href="namespacedot_feed_lib.html">dotFeedLib</a> does only add this; apart from this,nothing happens with this information. </p>
+
+</div>
+</div>
 <a class="anchor" id="acd6ddc64b4c38e6830f9086213915beb"></a><!-- doxytag: member="dotFeedLib::feed::rssVersion" ref="acd6ddc64b4c38e6830f9086213915beb" args="" -->
 <div class="memitem">
 <div class="memproto">
@@ -887,7 +1011,7 @@ Properties</h2></td></tr>
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Sun Sep 26 2010 16:43:10 for dotFeedLib Documentation by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Fri Jul 1 2011 15:43:07 for dotFeedLib Documentation by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

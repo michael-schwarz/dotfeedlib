@@ -1,0 +1,311 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   version="1.2"
+   width="865.28149"
+   height="321.27682"
+   id="svg2"
+   inkscape:version="0.47 r22583"
+   sodipodi:docname="logo_dotFeedLib.svg"
+   inkscape:export-filename="/home/michael/logo/smaller sizes/400*149.png"
+   inkscape:export-xdpi="41.604958"
+   inkscape:export-ydpi="41.604958">
+  <metadata
+     id="metadata76">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1680"
+     inkscape:window-height="1030"
+     id="namedview74"
+     showgrid="false"
+     inkscape:zoom="1"
+     inkscape:cx="432.64075"
+     inkscape:cy="160.63841"
+     inkscape:window-x="-4"
+     inkscape:window-y="-3"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg2" />
+  <defs
+     id="defs4">
+    <inkscape:perspective
+       sodipodi:type="inkscape:persp3d"
+       inkscape:vp_x="0 : 160.63841 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_z="865.28149 : 160.63841 : 1"
+       inkscape:persp3d-origin="432.64075 : 107.09227 : 1"
+       id="perspective78" />
+    <linearGradient
+       x1="30.059999"
+       y1="30.059999"
+       x2="225.94"
+       y2="225.94"
+       id="RSSg"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(0.5,0,0,0.5,373.14363,820.15692)">
+      <stop
+         id="stop2899"
+         style="stop-color:#e3702d;stop-opacity:1"
+         offset="0" />
+      <stop
+         id="stop2901"
+         style="stop-color:#ea7d31;stop-opacity:1"
+         offset="0.1071" />
+      <stop
+         id="stop2903"
+         style="stop-color:#f69537;stop-opacity:1"
+         offset="0.42638531" />
+      <stop
+         id="stop2905"
+         style="stop-color:#fb9e3a;stop-opacity:1"
+         offset="0.5" />
+      <stop
+         id="stop2907"
+         style="stop-color:#ea7c31;stop-opacity:1"
+         offset="0.70160002" />
+      <stop
+         id="stop2909"
+         style="stop-color:#de642b;stop-opacity:1"
+         offset="0.88660002" />
+      <stop
+         id="stop2911"
+         style="stop-color:#d95b29;stop-opacity:1"
+         offset="1" />
+    </linearGradient>
+    <linearGradient
+       x1="54.931885"
+       y1="511.3349"
+       x2="376.20871"
+       y2="511.3349"
+       id="linearGradient3079"
+       xlink:href="#RSSg"
+       gradientUnits="userSpaceOnUse" />
+    <linearGradient
+       x1="54.931885"
+       y1="511.3349"
+       x2="376.20871"
+       y2="511.3349"
+       id="linearGradient3087"
+       xlink:href="#RSSg"
+       gradientUnits="userSpaceOnUse" />
+    <linearGradient
+       x1="54.931885"
+       y1="511.3349"
+       x2="376.20871"
+       y2="511.3349"
+       id="linearGradient3089"
+       xlink:href="#RSSg"
+       gradientUnits="userSpaceOnUse" />
+    <linearGradient
+       x1="54.931885"
+       y1="511.3349"
+       x2="376.20871"
+       y2="511.3349"
+       id="linearGradient3091"
+       xlink:href="#RSSg"
+       gradientUnits="userSpaceOnUse" />
+    <linearGradient
+       x1="54.931885"
+       y1="511.3349"
+       x2="376.20871"
+       y2="511.3349"
+       id="linearGradient3093"
+       xlink:href="#RSSg"
+       gradientUnits="userSpaceOnUse" />
+  </defs>
+  <g
+     transform="translate(-54.931883,-350.69649)"
+     id="layer1" />
+  <g
+     transform="translate(-54.931883,-350.69649)"
+     id="layer2">
+    <flowRoot
+       id="flowRoot2931"
+       xml:space="preserve"
+       style="font-size:40px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"><flowRegion
+         id="flowRegion2933"><rect
+           width="617.14282"
+           height="340"
+           x="45.714287"
+           y="86.647896"
+           id="rect2935" /></flowRegion><flowPara
+         id="flowPara2937"
+         style="font-size:144px">dotFeedLib</flowPara></flowRoot>    <flowRoot
+       id="flowRoot2939"
+       xml:space="preserve"
+       style="font-size:40px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"><flowRegion
+         id="flowRegion2941"><rect
+           width="51.42857"
+           height="105.71429"
+           x="134.28572"
+           y="343.79074"
+           id="rect2943" /></flowRegion><flowPara
+         id="flowPara2945" /></flowRoot>    <flowRoot
+       id="flowRoot2947"
+       xml:space="preserve"
+       style="font-size:40px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"><flowRegion
+         id="flowRegion2949"><rect
+           width="148.57143"
+           height="571.42859"
+           x="145.71428"
+           y="149.50504"
+           id="rect2951" /></flowRegion><flowPara
+         id="flowPara2953" /></flowRoot>    <flowRoot
+       id="flowRoot2955"
+       xml:space="preserve"
+       style="font-size:40px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"><flowRegion
+         id="flowRegion2957"><rect
+           width="448.57144"
+           height="451.42856"
+           x="182.85715"
+           y="463.79074"
+           id="rect2959" /></flowRegion><flowPara
+         id="flowPara2961" /></flowRoot>    <flowRoot
+       id="flowRoot2963"
+       xml:space="preserve"
+       style="font-size:40px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"><flowRegion
+         id="flowRegion2965"><rect
+           width="288.57144"
+           height="365.71429"
+           x="271.42856"
+           y="506.64789"
+           id="rect2967" /></flowRegion><flowPara
+         id="flowPara2969" /></flowRoot>    <flowRoot
+       id="flowRoot2971"
+       xml:space="preserve"
+       style="font-size:40px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"><flowRegion
+         id="flowRegion2973"><rect
+           width="285.71429"
+           height="680"
+           x="54.285713"
+           y="32.362183"
+           id="rect2975" /></flowRegion><flowPara
+         id="flowPara2977" /></flowRoot>    <flowRoot
+       id="flowRoot2979"
+       xml:space="preserve"
+       style="font-size:40px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"><flowRegion
+         id="flowRegion2981"><rect
+           width="74.285713"
+           height="148.57143"
+           x="288.57144"
+           y="518.07648"
+           id="rect2983" /></flowRegion><flowPara
+         id="flowPara2985" /></flowRoot>    <flowRoot
+       id="flowRoot2987"
+       xml:space="preserve"
+       style="font-size:40px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"><flowRegion
+         id="flowRegion2989"><rect
+           width="471.42856"
+           height="114.28571"
+           x="1085.7142"
+           y="609.50507"
+           id="rect2991" /></flowRegion><flowPara
+         id="flowPara2993" /></flowRoot>    <flowRoot
+       id="flowRoot2995"
+       xml:space="preserve"
+       style="font-size:40px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"><flowRegion
+         id="flowRegion2997"><rect
+           width="240"
+           height="320"
+           x="42.857143"
+           y="92.362183"
+           id="rect2999" /></flowRegion><flowPara
+         id="flowPara3001" /></flowRoot>    <flowRoot
+       id="flowRoot3009"
+       xml:space="preserve"
+       style="font-size:40px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"><flowRegion
+         id="flowRegion3011"><rect
+           width="2.8571429"
+           height="54.285713"
+           x="60"
+           y="158.07646"
+           id="rect3013" /></flowRegion><flowPara
+         id="flowPara3015" /></flowRoot>    <flowRoot
+       id="flowRoot3017"
+       xml:space="preserve"
+       style="font-size:40px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"><flowRegion
+         id="flowRegion3019"><rect
+           width="94.285713"
+           height="160"
+           x="334.28571"
+           y="135.21933"
+           id="rect3021" /></flowRegion><flowPara
+         id="flowPara3023" /></flowRoot>    <text
+       x="525.71429"
+       y="195.21933"
+       id="text3025"
+       xml:space="preserve"
+       style="font-size:40px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"><tspan
+         x="525.71429"
+         y="195.21933"
+         id="tspan3027" /></text>
+    <g
+       id="g78"
+       style="fill:url(#linearGradient3079)">
+      <circle
+         cx="68"
+         cy="189"
+         r="24"
+         transform="matrix(2.4105802,0,0,2.4105802,-51.133646,158.51972)"
+         id="circle2919"
+         style="fill:url(#linearGradient3087);fill-opacity:1"
+         d="m 92,189 c 0,13.25483 -10.745166,24 -24,24 -13.254834,0 -24,-10.74517 -24,-24 0,-13.25483 10.745166,-24 24,-24 13.254834,0 24,10.74517 24,24 z" />
+      <path
+         d="M 280.70817,633.96079 H 225.67395 A 132.72957,132.72957 0 0 0 92.944374,501.23124 V 446.19703 A 187.76379,187.76379 0 0 1 280.70817,633.96079 z"
+         id="path69"
+         style="fill:url(#linearGradient3089)" />
+      <g
+         transform="matrix(1.6186533,0,0,1.6186533,21.723627,289.18766)"
+         id="g3076"
+         style="fill:url(#linearGradient3093)">
+        <path
+           d="M 184,213 A 140,140 0 0 0 44,73 V 38 a 175,175 0 0 1 175,175 z"
+           id="path2923"
+           style="fill:url(#linearGradient3091)" />
+      </g>
+    </g>
+    <text
+       x="61.770294"
+       y="638.026"
+       id="text2917"
+       xml:space="preserve"
+       style="font-size:40px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"><tspan
+         x="61.770294"
+         y="638.026"
+         id="tspan2919"
+         style="font-size:60px;fill:#000000">dot</tspan></text>
+    <text
+       x="160.05711"
+       y="642.50647"
+       id="text3064"
+       xml:space="preserve"
+       style="font-size:200px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"><tspan
+         id="tspan3066"
+         style="font-size:200px">FeedLib</tspan></text>
+  </g>
+</svg>

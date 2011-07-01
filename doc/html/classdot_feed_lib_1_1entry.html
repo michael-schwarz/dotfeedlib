@@ -54,7 +54,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
-<a href="#pub-attribs">Public Attributes</a>  </div>
+<a href="#pub-attribs">Public Attributes</a> &#124;
+<a href="#properties">Properties</a>  </div>
   <div class="headertitle">
 <h1>dotFeedLib.entry Class Reference</h1>  </div>
 </div>
@@ -75,8 +76,8 @@ Public Member Functions</h2></td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Creates a new GUID and sets it as the current GUiD.  <a href="#a593aff6795aac61d94540e08addda06b"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">string&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdot_feed_lib_1_1entry.html#a8700ad974346b5df25d692c0f78500db">getXML</a> (<a class="el" href="namespacedot_feed_lib.html#aa179211c6555d47b934f17586110e7c0">feedTypes</a> type)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Returns XML-Code for this feed.  <a href="#a8700ad974346b5df25d692c0f78500db"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">string&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdot_feed_lib_1_1entry.html#aca9c08a8b22bff176f3ecd1d82ed68e8">getXML</a> (<a class="el" href="namespacedot_feed_lib.html#aa179211c6555d47b934f17586110e7c0">feedTypes</a> type, string additionalTags)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Returns XML-Code for this feed.  <a href="#aca9c08a8b22bff176f3ecd1d82ed68e8"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">object&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdot_feed_lib_1_1entry.html#a0604ae5521e020a649792efdb27f57fc">Clone</a> ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Clones the object (Except pubDate and guid).  <a href="#a0604ae5521e020a649792efdb27f57fc"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">string&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdot_feed_lib_1_1entry.html#ae68feeab9d1e0de7498ebae77005db57">title</a></td></tr>
@@ -102,9 +103,13 @@ Public Attributes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classdot_feed_lib_1_1category_list.html">categoryList</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdot_feed_lib_1_1entry.html#ab33c3852428b89a55d01709468739a0a">category</a> = new <a class="el" href="classdot_feed_lib_1_1category_list.html">categoryList</a>()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><a class="el" href="classdot_feed_lib_1_1category_list.html" title="Contains a list of categories.">categoryList</a> that conatins all categories this entry belongs to  <a href="#ab33c3852428b89a55d01709468739a0a"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">XmlDocument&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdot_feed_lib_1_1entry.html#a7d454ae82d03d853f0594ea334656f4c">doc</a></td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Be careful: Is not updated when this entry is changed.  <a href="#a7d454ae82d03d853f0594ea334656f4c"></a><br/></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Be careful: not updated.  <a href="#a7d454ae82d03d853f0594ea334656f4c"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">XmlNode&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdot_feed_lib_1_1entry.html#a3d2f67713c36602c8c4ea74c6ae44864">node</a></td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Be careful: Is not updated when this entry is changed.  <a href="#a3d2f67713c36602c8c4ea74c6ae44864"></a><br/></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Be careful: not updated.  <a href="#a3d2f67713c36602c8c4ea74c6ae44864"></a><br/></td></tr>
+<tr><td colspan="2"><h2><a name="properties"></a>
+Properties</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">string&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdot_feed_lib_1_1entry.html#a59c14a2c1c2f59839320b974dc3100c8">additionalXml</a><code> [set]</code></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Additional XML-Tags that should be added to the entries XML Note: write-only you have to handle this completly by yourself; <a class="el" href="namespacedot_feed_lib.html">dotFeedLib</a> does only add this; apart from this,nothing happens with this information.  <a href="#a59c14a2c1c2f59839320b974dc3100c8"></a><br/></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
 <p>Description of entry. </p>
@@ -191,40 +196,23 @@ Public Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="aca9c08a8b22bff176f3ecd1d82ed68e8"></a><!-- doxytag: member="dotFeedLib::entry::getXML" ref="aca9c08a8b22bff176f3ecd1d82ed68e8" args="(feedTypes type, string additionalTags)" -->
+<a class="anchor" id="a0604ae5521e020a649792efdb27f57fc"></a><!-- doxytag: member="dotFeedLib::entry::Clone" ref="a0604ae5521e020a649792efdb27f57fc" args="()" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">string dotFeedLib.entry.getXML </td>
+          <td class="memname">object dotFeedLib.entry.Clone </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="namespacedot_feed_lib.html#aa179211c6555d47b934f17586110e7c0">feedTypes</a>&nbsp;</td>
-          <td class="paramname"> <em>type</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
           <td></td>
-          <td class="paramtype">string&nbsp;</td>
-          <td class="paramname"> <em>additionalTags</em></td><td>&nbsp;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td><td></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Returns XML-Code for this feed. </p>
-<dl><dt><b>Parameters:</b></dt><dd>
-  <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>type</em>&nbsp;</td><td>desired type</td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>additionalTags</em>&nbsp;</td><td>string that contains all additional attributes that are used</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="return"><dt><b>Returns:</b></dt><dd>XML-Code for this feed</dd></dl>
+<p>Clones the object (Except pubDate and guid). </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>Clone of the object</dd></dl>
 
 </div>
 </div>
@@ -327,7 +315,7 @@ Public Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Be careful: Is not updated when this entry is changed. </p>
+<p>Be careful: not updated. </p>
 
 </div>
 </div>
@@ -417,7 +405,7 @@ Public Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Be careful: Is not updated when this entry is changed. </p>
+<p>Be careful: not updated. </p>
 
 </div>
 </div>
@@ -451,6 +439,22 @@ Public Attributes</h2></td></tr>
 
 </div>
 </div>
+<hr/><h2>Property Documentation</h2>
+<a class="anchor" id="a59c14a2c1c2f59839320b974dc3100c8"></a><!-- doxytag: member="dotFeedLib::entry::additionalXml" ref="a59c14a2c1c2f59839320b974dc3100c8" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">string dotFeedLib.entry.additionalXml<code> [set]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Additional XML-Tags that should be added to the entries XML Note: write-only you have to handle this completly by yourself; <a class="el" href="namespacedot_feed_lib.html">dotFeedLib</a> does only add this; apart from this,nothing happens with this information. </p>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following file:<ul>
 <li>G:/dotFeedLib/entry.cs</li>
 </ul>
@@ -469,7 +473,7 @@ Public Attributes</h2></td></tr>
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Sun Sep 26 2010 16:43:10 for dotFeedLib Documentation by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Fri Jul 1 2011 15:43:07 for dotFeedLib Documentation by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>
