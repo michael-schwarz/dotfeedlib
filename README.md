@@ -107,4 +107,4 @@ If you want to save the feed to a local volume you can use the `feed.save()` met
 If you e.g. want to upload the via FTP, you will have to implemt that functionality yourself. To get the XML-code use `feed.getXML(feedTypes.RSS)` if you want to get RSS-code or `feed.getXML(feedTypes.ATOM)` for RSS-code.
 
 ## Documentation
-A complete documentation (auto-generated from the comments) can be found at http://dotfeedlib.sourceforge.net/doc/index.html .
+A complete documentation (auto-generated from the comments) can be found at https://michael-schwarz.github.io/dotfeedlib/index.html.
